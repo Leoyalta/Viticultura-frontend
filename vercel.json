@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "dist/viticultura-frontend/browser",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
