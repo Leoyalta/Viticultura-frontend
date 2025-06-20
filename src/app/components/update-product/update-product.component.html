@@ -1,0 +1,95 @@
+<section class="update-form">
+  <h2>Actualizar Producto</h2>
+
+  @if (productForm) {
+  <form [formGroup]="productForm">
+    <div class="input-box">
+      <label for="code">Código</label>
+      <input id="code" formControlName="code" />
+      @if (productForm.get('code')?.invalid && productForm.get('code')?.touched)
+      {
+      <small class="error">Formato requerido: 01-02-03</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="variety">Variedad</label>
+      <select id="variety" formControlName="variety">
+        <option value="">Selecciona una variedad</option>
+        <option value="Macabeo">Macabeo</option>
+        <option value="Xarello">Xarello</option>
+        <option value="Parellada">Parellada</option>
+        <option value="Tempranillo">Tempranillo</option>
+        <option value="Garnacha">Garnacha</option>
+        <option value="Chardonnay">Chardonnay</option>
+        <option value="Verdejo">Verdejo</option>
+        <option value="Sauvignon Blanc">Sauvignon Blanc</option>
+      </select>
+      @if (productForm.get('variety')?.invalid &&
+      productForm.get('variety')?.touched) {
+      <small class="error">Este campo es obligatorio</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="pie">Pie</label>
+      <select id="pie" formControlName="pie">
+        <option value="">Selecciona un pie</option>
+        <option value="R-110">R-110</option>
+        <option value="SO-4">SO-4</option>
+        <option value="Ru-140">Ru-140</option>
+        <option value="41-B">41-B</option>
+        <option value="333">333</option>
+      </select>
+      @if (productForm.get('pie')?.invalid && productForm.get('pie')?.touched) {
+      <small class="error">Este campo es obligatorio</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="clon">Clon</label>
+      <input id="clon" formControlName="clon" />
+      @if (productForm.get('clon')?.invalid && productForm.get('clon')?.touched)
+      {
+      <small class="error">Este campo es obligatorio</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="clonPie">Clon del Pie</label>
+      <input id="clonPie" formControlName="clonPie" />
+      @if (productForm.get('clonPie')?.invalid &&
+      productForm.get('clonPie')?.touched) {
+      <small class="error">Este campo es obligatorio</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="total">Total</label>
+      <input id="total" type="number" formControlName="total" />
+      @if (productForm.get('total')?.invalid &&
+      productForm.get('total')?.touched) {
+      <small class="error">Debe ser un número mayor que 0</small>
+      }
+    </div>
+
+    <div class="input-box">
+      <label for="isAvailable">Disponible</label>
+      <select id="isAvailable" formControlName="isAvailable">
+        <option [value]="true">Sí</option>
+        <option [value]="false">No</option>
+      </select>
+      @if (productForm.get('isAvailable')?.invalid &&
+      productForm.get('isAvailable')?.touched) {
+      <small class="error">Este campo es obligatorio</small>
+      }
+    </div>
+
+    <button type="button" class="btn" (click)="openUpdateConfirm()">
+      Guardar Cambios
+    </button>
+  </form>
+  } @if (errorMessage) {
+  <p class="error">{{ errorMessage }}</p>
+  }
+</section>

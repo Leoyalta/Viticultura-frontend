@@ -1,0 +1,48 @@
+.nav-box {
+  background-color: rgb(42, 0, 48);
+  color: white;
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+  }
+
+  &.active a,
+  a:hover {
+    color: var(--md-sys-color-tertiary);
+  }
+}
+
+.active-indicator {
+  margin-top: 4px;
+  height: 3px;
+  width: 100%;
+  background-color: var(--md-sys-color-secondary);
+  visibility: hidden;
+}
+
+.nav-link.active .active-indicator {
+  visibility: visible;
+}

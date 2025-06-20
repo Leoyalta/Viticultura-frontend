@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use "@angular/material" as mat;
+@import "./app/themes/themes.css";
+
+@include mat.core();
+
+:root {
+  --md-sys-color-primary: #388e3c;
+  --md-sys-color-secondary: #ec407a;
+  --md-sys-color-tertiary: #fbc02d;
+  --md-sys-color-background: #ffffff;
+  --md-sys-color-on-background: #2a0030;
+
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: orange,
+      active-indicator-width: 32px,
+    )
+  );
+  @include mat.paginator-overrides(
+    (
+      container-text-color: #333,
+      // container-background-color: #d8c9f2bf,
+      enabled-icon-color: #388e3c,
+      disabled-icon-color: #ccc,
+      container-text-size: 14px,
+      container-text-weight: 500,
+      container-text-line-height: 20px,
+      container-size: 48px,
+    )
+  );
+}
+
+// html {
+//   color-scheme: light dark;
+//   @include mat.theme(
+//     (
+//       color: mat.$violet-palette,
+//       typography: Roboto,
+//       density: 0,
+//     )
+//   );
+// }
+
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  height: 100%;
+}
+.container {
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: block;
+
+  @media (min-width: 600px) {
+    padding: 1.5rem;
+  }
+
+  @media (min-width: 960px) {
+    padding: 2rem;
+  }
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.spinner-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loading-text {
+  font-size: 1rem;
+  color: #666;
+}

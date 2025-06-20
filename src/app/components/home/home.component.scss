@@ -1,0 +1,20 @@
+.home-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5 vw;
+}
+.home-title {
+  text-align: center;
+}
+.goTo-btn {
+  border: 2px solid rgba(241, 232, 207, 0.912);
+  border-radius: 5px;
+  padding: 8px 16px;
+  max-width: 320px;
+}
+.goTo-btn:hover {
+  box-shadow: 0px -2px 4px rgba(223, 220, 169, 0.541),
+    0px 3px 6px rgba(211, 220, 140, 0.35), 0px 0px 8px rgba(215, 220, 140, 0.5);
+}

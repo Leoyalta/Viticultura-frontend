@@ -1,0 +1,56 @@
+<!-- <nav class="nav-box">
+  <div class="nav-links">
+    <div class="nav-link" routerLinkActive="active">
+      <a routerLink="/welcome">HOME</a>
+      <div class="active-indicator"></div>
+    </div>
+    @if (user) {
+    <div class="nav-link" routerLinkActive="active">
+      <a routerLink="/moviesList">MOVIES</a>
+      <div class="active-indicator"></div>
+    </div>
+    <div class="nav-link" routerLinkActive="active">
+      <a routerLink="/actorsList">ACTORS</a>
+      <div class="active-indicator"></div>
+    </div>
+    }
+  </div>
+
+  <div class="auth-actions">
+    @if (user) {
+    <button (click)="logout()">Logout</button>
+    } @else {
+    <div class="nav-link" routerLinkActive="active">
+      <a routerLink="/login">Login</a>
+      <div class="active-indicator"></div>
+    </div>
+    <div class="nav-link" routerLinkActive="active">
+      <a routerLink="/register">Register</a>
+      <div class="active-indicator"></div>
+    </div>
+    }
+  </div>
+</nav> -->
+
+<nav class="nav-box">
+  <div class="container">
+    <div class="nav-links">
+      <div class="nav-link" routerLinkActive="active">
+        <a routerLink="/home">HOME</a>
+        <div class="active-indicator"></div>
+      </div>
+      <div class="nav-link" routerLinkActive="active">
+        <a routerLink="/products">PRODUCTS</a>
+        <div class="active-indicator"></div>
+      </div>
+      <div class="nav-link" routerLinkActive="active">
+        <a routerLink="/login">Login</a>
+        <div class="active-indicator"></div>
+      </div>
+      <div class="nav-link" routerLinkActive="active">
+        <a routerLink="/register">Register</a>
+        <div class="active-indicator"></div>
+      </div>
+    </div>
+  </div>
+</nav>

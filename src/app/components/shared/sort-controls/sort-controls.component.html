@@ -1,0 +1,14 @@
+<form [formGroup]="sortForm" class="sort-form">
+  <label for="sortBy">Ordenar por:</label>
+  <select id="sortBy" formControlName="sortBy">
+    <option value="code">Código</option>
+    <option value="variety">Variedad</option>
+    <option value="pie">Pie</option>
+    <option value="total">Total</option>
+  </select>
+
+  <select formControlName="sortOrder">
+    <option value="asc">Ascendente</option>
+    <option value="desc">Descendente</option>
+  </select>
+</form>

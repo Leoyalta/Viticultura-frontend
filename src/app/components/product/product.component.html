@@ -1,0 +1,27 @@
+@if (product) {
+<section class="product-details">
+  <h2>Producto: {{ product.code }}</h2>
+  <p><strong>Variedad:</strong> {{ product.variety }}</p>
+  <p><strong>Pie:</strong> {{ product.pie }}</p>
+  <p><strong>Clon:</strong> {{ product.clon }}</p>
+  <p><strong>Clon del Pie:</strong> {{ product.clonPie }}</p>
+  <p><strong>Total:</strong> {{ product.total }}</p>
+  <p><strong>Disponible:</strong> {{ product.isAvailable ? "Sí" : "No" }}</p>
+  <p><strong>Creado:</strong> {{ product.createdAt | date : "short" }}</p>
+  <p><strong>Actualizado:</strong> {{ product.updatedAt | date : "short" }}</p>
+
+  <div class="btns-box">
+    <button class="btn act-btn" (click)="goToUpdateProduct(product._id)">
+      Actualizar
+    </button>
+
+    <button class="btn delete-btn" (click)="openDeleteConfirm()">
+      Eliminar
+    </button>
+  </div>
+</section>
+} @else { @if (errorMessage) {
+<p class="error">{{ errorMessage }}</p>
+} @else {
+<p>Producto no encontrado.</p>
+} }

@@ -1,0 +1,32 @@
+.product-details {
+  padding: 1rem;
+  max-width: 600px;
+  margin: auto;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+    color: var(--md-sys-color-primary);
+  }
+}
+.btns-box {
+  display: flex;
+  gap: 1rem;
+
+  justify-content: center;
+  align-items: center;
+}
+.act-btn {
+  background-color: var(--md-sys-color-primary);
+  color: white;
+}
+.delete-btn {
+  background-color: var(--md-sys-color-secondary);
+  color: white;
+}
