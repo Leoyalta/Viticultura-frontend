@@ -109,7 +109,6 @@ export class ProductsService {
         return response.data;
       }),
       catchError((error) => {
-        console.error('Error al actualizar producto:', error.message);
         return throwError(
           () => new Error(error?.message || 'Error desconocido')
         );

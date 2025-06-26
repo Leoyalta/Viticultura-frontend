@@ -7,9 +7,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { PaginatorComponent } from '../shared/paginator/paginator.component';
 import { PageEvent } from '@angular/material/paginator';
 import { SortControlsComponent } from '../shared/sort-controls/sort-controls.component';
-import { ProductsFiltersComponent } from '../filters/products-filters/products-filters.component';
 
 import { Subscription } from 'rxjs';
+import { FiltersDrawerComponent } from '../filters/filters-drawer/filters-drawer.component';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
     MatProgressSpinnerModule,
     PaginatorComponent,
     SortControlsComponent,
-    ProductsFiltersComponent,
+    FiltersDrawerComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   totalProducts = 0;
   pageSize = 20;
   pageIndex = 0;
-  // filters: any = {};
 
   private subscription!: Subscription;
 

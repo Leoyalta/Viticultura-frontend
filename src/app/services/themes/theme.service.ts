@@ -9,7 +9,7 @@ export class ThemeService {
   private readonly themes: Theme[] = [
     {
       id: 'green',
-      primary: '#d2e7df',
+      primary: '#ecf6de',
       displayName: 'Green',
     },
     {

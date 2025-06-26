@@ -4,15 +4,14 @@
   color-scheme: light;
 
   /* Primary palette variables */
-  --mat-sys-primary: light-dark(#58614f, #c0cab3);
-  --mat-sys-on-primary: light-dark(#ffffff, #2a3323);
-  --mat-sys-primary-container: light-dark(#dce6cf, #414a38);
-  --mat-sys-on-primary-container: light-dark(#161e0f, #dce6cf);
-  --mat-sys-inverse-primary: light-dark(#c0cab3, #58614f);
-  --mat-sys-primary-fixed: light-dark(#dce6cf, #dce6cf);
-  --mat-sys-primary-fixed-dim: light-dark(#c0cab3, #c0cab3);
-  --mat-sys-on-primary-fixed: light-dark(#161e0f, #161e0f);
-  --mat-sys-on-primary-fixed-variant: light-dark(#414a38, #414a38);
+  --mat-sys-tertiary: light-dark(#4f625c, #b6cbc4);
+  --mat-sys-on-tertiary: light-dark(#ffffff, #22342f);
+  --mat-sys-tertiary-container: light-dark(#d2e7df, #384a45);
+  --mat-sys-on-tertiary-container: light-dark(#0d1f1a, #d2e7df);
+  --mat-sys-tertiary-fixed: light-dark(#d2e7df, #d2e7df);
+  --mat-sys-tertiary-fixed-dim: light-dark(#b6cbc4, #b6cbc4);
+  --mat-sys-on-tertiary-fixed: light-dark(#0d1f1a, #0d1f1a);
+  --mat-sys-on-tertiary-fixed-variant: light-dark(#384a45, #384a45);
 
   /* Secondary palette variables */
   --mat-sys-secondary: light-dark(#5c6057, #c5c8bd);
@@ -25,14 +24,15 @@
   --mat-sys-on-secondary-fixed-variant: light-dark(#444840, #444840);
 
   /* Tertiary palette variables */
-  --mat-sys-tertiary: light-dark(#4f625c, #b6cbc4);
-  --mat-sys-on-tertiary: light-dark(#ffffff, #22342f);
-  --mat-sys-tertiary-container: light-dark(#d2e7df, #384a45);
-  --mat-sys-on-tertiary-container: light-dark(#0d1f1a, #d2e7df);
-  --mat-sys-tertiary-fixed: light-dark(#d2e7df, #d2e7df);
-  --mat-sys-tertiary-fixed-dim: light-dark(#b6cbc4, #b6cbc4);
-  --mat-sys-on-tertiary-fixed: light-dark(#0d1f1a, #0d1f1a);
-  --mat-sys-on-tertiary-fixed-variant: light-dark(#384a45, #384a45);
+  --mat-sys-primary: light-dark(#58614f, #c0cab3);
+  --mat-sys-on-primary: light-dark(#ffffff, #2a3323);
+  --mat-sys-primary-container: light-dark(#dce6cf, #414a38);
+  --mat-sys-on-primary-container: light-dark(#161e0f, #dce6cf);
+  --mat-sys-inverse-primary: light-dark(#c0cab3, #58614f);
+  --mat-sys-primary-fixed: light-dark(#dce6cf, #dce6cf);
+  --mat-sys-primary-fixed-dim: light-dark(#c0cab3, #c0cab3);
+  --mat-sys-on-primary-fixed: light-dark(#161e0f, #161e0f);
+  --mat-sys-on-primary-fixed-variant: light-dark(#414a38, #414a38);
 
   /* Neutral palette variables */
   --mat-sys-background: light-dark(#fcf9f6, #131312);

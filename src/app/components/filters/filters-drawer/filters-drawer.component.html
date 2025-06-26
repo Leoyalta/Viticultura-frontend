@@ -1,0 +1,21 @@
+<mat-drawer-container class="drawer-container" autosize>
+  <mat-drawer
+    #drawer
+    [mode]="drawerMode()"
+    [opened]="!isSmallScreen()"
+    position="start"
+  >
+    <app-products-filters (filtersChange)="handleFiltersChange($event)" />
+  </mat-drawer>
+
+  <div class="main-content">
+    @if (isSmallScreen()) {
+    <div class="toggle-filters-container">
+      <button mat-button class="toggle-filters-btn" (click)="drawer.toggle()">
+        Filtros
+      </button>
+    </div>
+    }
+    <ng-content></ng-content>
+  </div>
+</mat-drawer-container>

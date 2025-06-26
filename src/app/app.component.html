@@ -1,12 +1,12 @@
 <div class="container">
   <app-nav-list />
+  <app-tab-navigation></app-tab-navigation>
   <mat-toolbar color="primary">
     <span>Angular Custom Themes</span>
     <button mat-icon-button [matMenuTriggerFor]="themeMenu">
       <mat-icon>format_color_fill</mat-icon>
     </button>
   </mat-toolbar>
-
   <mat-menu #themeMenu="matMenu">
     @for (theme of themeService.getThemes(); track theme.id) {
     <button mat-menu-item (click)="themeService.setTheme(theme.id)">
@@ -16,9 +16,6 @@
   </mat-menu>
 
   <main class="main">
-    <div class="content">
-      <h1>Hello, Viticultura-frontend</h1>
-    </div>
     <router-outlet />
   </main>
 </div>
