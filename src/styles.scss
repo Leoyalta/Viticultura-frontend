@@ -1,11 +1,17 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
+
 @use "@angular/material" as mat;
 @import "./app/themes/themes.css";
 
 @include mat.core();
 
-:root {
+:root,
+body.green-theme {
+  --primary-bg: #ecf6de;
+  --primary-text: #333;
+  --card-bg: #ffffff;
+  --card-text: #222;
   --md-sys-color-primary: #388e3c;
   --md-sys-color-secondary: #ec4079b9;
   --md-sys-color-tertiary: #fbc02d;
@@ -32,12 +38,19 @@
   );
 }
 
+body.dark-theme {
+  --primary-bg: #1e1e1e;
+  --primary-text: #ffffff;
+  --card-bg: #2c2c2c;
+  --card-text: #eee;
+}
+
 body {
-  // background: var(--mat-sys-surface);
-  // color: var(--mat-sys-on-surface);
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
   height: 100%;
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
 }
 .container {
   width: 100%;
@@ -74,4 +87,23 @@ body {
 .loading-text {
   font-size: 1rem;
   color: #666;
+}
+
+mat-card,
+mat-card-title,
+mat-card-subtitle,
+mat-card-content,
+mat-card-footer {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+a,
+button {
+  color: var(--primary-text);
 }

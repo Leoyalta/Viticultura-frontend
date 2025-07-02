@@ -1,0 +1,19 @@
+@if (isLoading) {
+<p>Cargando clientes...</p>
+} @else if (error) {
+<p>Error: {{ error }}</p>
+} @else {
+<div class="layout">
+  <section class="clients-grid">
+    @if (clients.length === 0) {
+    <p>No hay clientes para mostrar.</p>
+    } @else { @for (client of clients; track client._id) {
+    <app-client-card [client]="client" />
+    } }
+  </section>
+
+  <aside class="map-panel">
+    <app-clients-map [clients]="clients"></app-clients-map>
+  </aside>
+</div>
+}

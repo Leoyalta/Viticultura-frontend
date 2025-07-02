@@ -1,0 +1,21 @@
+<mat-card appearance="outlined" class="client-card">
+  <mat-card-header>
+    <mat-card-title> {{ client.name }} {{ client.secondName }} </mat-card-title>
+    <mat-card-subtitle>{{ client.phone }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ client.email }}</p>
+    <p>
+      {{ client.address.street }}, {{ client.address.city }},
+      {{ client.address.postalCode }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/clients', client._id]">Mostrar detalles</a>
+    <button mat-button color="primary" (click)="showOnMap.emit(client)">
+      Mostrar en mapa
+    </button>
+  </mat-card-actions>
+</mat-card>

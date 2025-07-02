@@ -12,6 +12,7 @@ export class TabNavigationComponent {
   links = [
     { label: 'HOME', path: 'home' },
     { label: 'PRODUCTS', path: 'products' },
+    { label: 'CLIENTS', path: 'clients' },
     { label: 'Login', path: 'login' },
     { label: 'Register', path: 'register' },
   ];

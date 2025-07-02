@@ -1,0 +1,36 @@
+@if (isLoading) {
+<p>Cargando información del cliente...</p>
+} @else if (error) {
+<p>Error: {{ error }}</p>
+} @else if (client) {
+<mat-card class="client-detail-card">
+  <mat-card-header>
+    <div mat-card-avatar class="client-avatar"></div>
+    <mat-card-title>{{ client.name }} {{ client.secondName }}</mat-card-title>
+    <mat-card-subtitle>{{ client.email }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-icon color="primary" class="icon-left">call</mat-icon>
+      {{ client.phone }}
+    </p>
+    <p>
+      <mat-icon color="primary" class="icon-left">location_on</mat-icon>
+      {{ client.address.street }}, {{ client.address.city }},
+      {{ client.address.postalCode }}, {{ client.address.province }}
+    </p>
+  </mat-card-content>
+</mat-card>
+
+<h3>Parcelas registradas</h3>
+@if (locations.length > 0) {
+<ul class="location-list">
+  <!-- @for (location of locations; track location._id) {
+        <li>
+          <strong>{{ location.locationName }}</strong> — {{ location.geometry.type }}
+        </li>
+      } -->
+</ul>
+} @else {
+<p>Este cliente no tiene parcelas registradas.</p>
+} }
