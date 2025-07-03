@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../assets/environments/environment';
+import { environment } from '../../../../environments/environment';
 
 import * as mapboxgl from 'mapbox-gl';
 

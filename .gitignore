@@ -7,7 +7,6 @@
 /bazel-out
 
 # Environment files
-src/assets/environments/
 src/environments/
 
 # Node
