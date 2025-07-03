@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './core/home/home.component';
+import { HomeComponent } from './features/home/home.component';
 import { LoginComponent } from './core/auth/components/login/login.component';
 import { RegisterComponent } from './core/auth/components/register/register.component';
 import { ProductComponent } from './features/products/components/product/product.component';
-import { NotFoundPageComponent } from './shared/components/not-found-page/not-found-page.component';
+import { NotFoundPageComponent } from './features/not-found-page/not-found-page.component';
 import { ProductsComponent } from './features/products/components/products/products.component';
 import { AddNewProductComponent } from './features/products/components/add-new-product/add-new-product.component';
 import { UpdateProductComponent } from './features/products/components/update-product/update-product.component';

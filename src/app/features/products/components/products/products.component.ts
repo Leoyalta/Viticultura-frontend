@@ -5,7 +5,7 @@ import { ProductsService } from '../../services/products/products.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { PaginatorComponent } from '../../../../core/paginator/paginator.component';
+import { PaginatorComponent } from '../../../../shared/components/paginator/paginator.component';
 import { PageEvent } from '@angular/material/paginator';
 import { SortControlsComponent } from '../../../../shared/components/sort-controls/sort-controls.component';
 
