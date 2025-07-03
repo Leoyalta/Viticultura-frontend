@@ -4,6 +4,10 @@ import { ClientCardComponent } from '../client-card/client-card.component';
 import { Client } from '../../models/clientsModel';
 import { Router } from '@angular/router';
 import { ClientsMapComponent } from '../clients-map/clients-map.component';
+// import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+// import { PaginatorComponent } from '../../../../core/paginator/paginator.component';
+// import { PageEvent } from '@angular/material/paginator';
+// import { SortControlsComponent } from '../../../../shared/components/sort-controls/sort-controls.component';
 
 @Component({
   selector: 'app-client-list',
