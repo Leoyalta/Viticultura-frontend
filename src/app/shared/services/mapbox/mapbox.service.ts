@@ -22,7 +22,7 @@ export class MapboxService {
       style: 'mapbox://styles/mapbox/streets-v12',
       center,
       zoom,
-      accessToken: environment.mapboxToken,
+      accessToken: environment.MAPBOX_TOKEN,
     });
 
     this.map.addControl(new mapboxgl.NavigationControl());
