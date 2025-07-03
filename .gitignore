@@ -7,7 +7,7 @@
 /bazel-out
 
 # Environment files
-/src/assets/environments/environments.ts
+/src/assets/environments/environment*.ts
 src/environments/
 
 # Node
