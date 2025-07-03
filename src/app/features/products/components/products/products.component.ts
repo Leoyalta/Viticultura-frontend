@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Product, ProductQueryParams } from '../../models/productsModel';
+import { Product } from '../../models/productsModel';
+import { QueryParams } from '../../../../shared/models/queryParamsModel';
 import { ProductsService } from '../../services/products/products.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
