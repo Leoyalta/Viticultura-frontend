@@ -31,8 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/mapbox-gl/dist/mapbox-gl.css",
-              "node_modules/mapbox-gl-draw/dist/mapbox-gl-draw.css"
+              "node_modules/mapbox-gl/dist/mapbox-gl.css"
             ],
             "scripts": []
           },
