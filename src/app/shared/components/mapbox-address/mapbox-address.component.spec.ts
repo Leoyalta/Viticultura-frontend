@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductsComponent } from './products.component';
+import { MapboxAddressComponent } from './mapbox-address.component';
 
-describe('ProductsComponent', () => {
-  let component: ProductsComponent;
-  let fixture: ComponentFixture<ProductsComponent>;
+describe('MapboxAddressComponent', () => {
+  let component: MapboxAddressComponent;
+  let fixture: ComponentFixture<MapboxAddressComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductsComponent]
+      imports: [MapboxAddressComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProductsComponent);
+    fixture = TestBed.createComponent(MapboxAddressComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

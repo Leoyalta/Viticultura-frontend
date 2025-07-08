@@ -1,1 +1,144 @@
-<p>add-new-client works!</p>
+<section class="client-page-container">
+  <form
+    [formGroup]="clientForm"
+    (ngSubmit)="submitForm()"
+    class="client-form"
+    novalidate
+  >
+    <div class="form-section">
+      <h3>Datos personales</h3>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" required />
+          @if (clientForm.get('name')?.hasError('required') &&
+          clientForm.get('name')?.touched) {
+          <mat-error>El nombre es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="secondName" required />
+          @if (clientForm.get('secondName')?.hasError('required') &&
+          clientForm.get('secondName')?.touched) {
+          <mat-error>El apellido es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="phone" required />
+        @if (clientForm.get('phone')?.hasError('required') &&
+        clientForm.get('phone')?.touched) {
+        <mat-error>El teléfono es obligatorio.</mat-error>
+        } @if (clientForm.get('phone')?.hasError('pattern') &&
+        clientForm.get('phone')?.touched) {
+        <mat-error
+          >El teléfono debe tener el formato +34 600 000 000.</mat-error
+        >
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        @if (clientForm.get('email')?.hasError('required') &&
+        clientForm.get('email')?.touched) {
+        <mat-error>El correo electrónico es obligatorio.</mat-error>
+        } @if (clientForm.get('email')?.hasError('email') &&
+        clientForm.get('email')?.touched) {
+        <mat-error>Formato de correo inválido.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="form-section" formGroupName="address">
+      <h3>Dirección</h3>
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Calle</mat-label>
+          <input matInput formControlName="street" required />
+          @if (clientForm.get('address.street')?.hasError('required') &&
+          clientForm.get('address.street')?.touched) {
+          <mat-error>La calle es obligatoria.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ciudad</mat-label>
+          <input matInput formControlName="city" required />
+          @if (clientForm.get('address.city')?.hasError('required') &&
+          clientForm.get('address.city')?.touched) {
+          <mat-error>La ciudad es obligatoria.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Código Postal</mat-label>
+          <input matInput formControlName="postalCode" required />
+          @if (clientForm.get('address.postalCode')?.hasError('required') &&
+          clientForm.get('address.postalCode')?.touched) {
+          <mat-error>El código postal es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Provincia</mat-label>
+          <input matInput formControlName="province" required />
+          @if (clientForm.get('address.province')?.hasError('required') &&
+          clientForm.get('address.province')?.touched) {
+          <mat-error>La provincia es obligatoria.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>País</mat-label>
+          <input matInput formControlName="country" required />
+          @if (clientForm.get('address.country')?.hasError('required') &&
+          clientForm.get('address.country')?.touched) {
+          <mat-error>El país es obligatorio.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-section" formGroupName="location">
+      <h3>Ubicación</h3>
+
+      @if (!clientForm.get('location')?.valid) {
+      <p class="warning-text">
+        Por favor, selecciona una ubicación en el mapa.
+      </p>
+      }
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Latitud</mat-label>
+          <input matInput formControlName="lat" readonly />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Longitud</mat-label>
+          <input matInput formControlName="lng" readonly />
+        </mat-form-field>
+      </div>
+
+      <app-mapbox-address
+        (locationSelected)="clientForm.get('location')?.setValue($event)"
+      ></app-mapbox-address>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="clientForm.invalid || !clientForm.get('location')?.valid"
+    >
+      Guardar Cliente
+    </button>
+  </form>
+</section>

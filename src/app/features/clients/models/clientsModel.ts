@@ -28,3 +28,13 @@ export interface ClientsResponse {
   hasNextPage: boolean;
   hasPrevPage: boolean;
 }
+
+export interface ClientsQueryParams {
+  page?: number;
+  per_page?: number;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
+  name?: string;
+  secondName?: string;
+  phone?: string;
+}

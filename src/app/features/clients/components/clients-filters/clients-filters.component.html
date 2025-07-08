@@ -1,0 +1,44 @@
+<form [formGroup]="filtersForm" class="filters-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" placeholder="Ej: Juan" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('name')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Apellido</mat-label>
+    <input matInput formControlName="secondName" placeholder="Ej: Pérez" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('secondName')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Teléfono</mat-label>
+    <input matInput formControlName="phone" placeholder="Ej: 600123456" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('phone')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button class="btn reset-btn" type="button" (click)="resetFilters()">
+    Reiniciar <mat-icon class="icon-close">autorenew</mat-icon>
+  </button>
+</form>

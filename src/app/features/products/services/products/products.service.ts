@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { Product, ProductsResponse } from '../../models/productsModel';
-import { QueryParams } from '../../../../shared/models/queryParamsModel';
+import { ProductQueryParams } from '../../models/productsModel';
 
 @Injectable({
   providedIn: 'root',
@@ -12,21 +12,21 @@ export class ProductsService {
     'https://viticultura-backend.onrender.com/products';
 
   constructor(private http: HttpClient) {}
-  private queryParamsSubject = new BehaviorSubject<QueryParams>({
+  private queryParamsSubject = new BehaviorSubject<ProductQueryParams>({
     page: 1,
     per_page: 20,
   });
 
   queryParams$ = this.queryParamsSubject.asObservable();
 
-  private cleanParams(params: QueryParams): QueryParams {
+  private cleanParams(params: ProductQueryParams): ProductQueryParams {
     return Object.fromEntries(
       Object.entries(params).filter(
         ([, value]) => value !== '' && value !== null && value !== undefined
       )
-    ) as QueryParams;
+    ) as ProductQueryParams;
   }
-  updateQueryParams(params: Partial<QueryParams>): void {
+  updateQueryParams(params: Partial<ProductQueryParams>): void {
     const current = this.queryParamsSubject.value;
 
     const cleaned = this.cleanParams({ ...current, ...params });

@@ -1,5 +1,6 @@
 @if (isLoading) {
 <p>Cargando información del cliente...</p>
+<app-spinner></app-spinner>
 } @else if (error) {
 <p>Error: {{ error }}</p>
 } @else if (client) {
@@ -20,17 +21,35 @@
       {{ client.address.postalCode }}, {{ client.address.province }}
     </p>
   </mat-card-content>
+  <div class="btns-box">
+    <button
+      class="edit-btn"
+      mat-raised-button
+      type="button"
+      color="primary"
+      (click)="goToUpdateClient()"
+    >
+      <mat-icon>edit</mat-icon>
+      Editar Cliente
+    </button>
+    <button
+      class="delete-btn"
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="deleteClient()"
+    >
+      <mat-icon>delete</mat-icon>
+      Eliminar Cliente
+    </button>
+  </div>
 </mat-card>
 
 <h3>Parcelas registradas</h3>
-@if (locations.length > 0) {
-<ul class="location-list">
-  <!-- @for (location of locations; track location._id) {
-        <li>
-          <strong>{{ location.locationName }}</strong> — {{ location.geometry.type }}
-        </li>
-      } -->
-</ul>
+@if (!client) {
+<p>Cargando datos del cliente...</p>
+} @else if (client._id) {
+<app-client-locations-map [clientId]="client._id" />
 } @else {
 <p>Este cliente no tiene parcelas registradas.</p>
-} }
+}}
