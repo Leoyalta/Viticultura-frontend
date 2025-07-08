@@ -1,0 +1,22 @@
+<div class="address-search">
+  <mat-form-field appearance="fill" class="address-field">
+    <mat-label>Buscar dirección</mat-label>
+    <input
+      matInput
+      [(ngModel)]="address"
+      (keyup.enter)="searchLocation()"
+      placeholder="Ej. Calle Mayor 123, Barcelona"
+    />
+  </mat-form-field>
+  <button
+    class="search-btn"
+    mat-raised-button
+    color="accent"
+    type="button"
+    (click)="searchLocation()"
+  >
+    Buscar
+  </button>
+</div>
+
+<div #mapContainer id="mapContainer" class="mapbox-map"></div>

@@ -1,21 +1,19 @@
-<div class="container">
-  <app-nav-list />
-  <app-tab-navigation></app-tab-navigation>
-  <mat-toolbar color="primary">
-    <span>Angular Custom Themes</span>
-    <button mat-icon-button [matMenuTriggerFor]="themeMenu">
-      <mat-icon>format_color_fill</mat-icon>
-    </button>
-  </mat-toolbar>
-  <mat-menu #themeMenu="matMenu">
-    @for (theme of themeService.getThemes(); track theme.id) {
-    <button mat-menu-item (click)="themeService.setTheme(theme.id)">
-      {{ theme.displayName }}
-    </button>
-    }
-  </mat-menu>
+<app-nav-list />
+<app-tab-navigation></app-tab-navigation>
+<mat-toolbar color="primary">
+  <span>Angular Custom Themes</span>
+  <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+    <mat-icon>format_color_fill</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #themeMenu="matMenu">
+  @for (theme of themeService.getThemes(); track theme.id) {
+  <button mat-menu-item (click)="themeService.setTheme(theme.id)">
+    {{ theme.displayName }}
+  </button>
+  }
+</mat-menu>
 
-  <main class="main">
-    <router-outlet />
-  </main>
-</div>
+<main class="main">
+  <router-outlet />
+</main>
