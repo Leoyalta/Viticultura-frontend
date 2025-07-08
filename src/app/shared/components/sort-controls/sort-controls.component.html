@@ -1,14 +1,20 @@
 <form [formGroup]="sortForm" class="sort-form">
-  <label for="sortBy">Ordenar por:</label>
-  <select id="sortBy" formControlName="sortBy">
-    <option value="code">Código</option>
-    <option value="variety">Variedad</option>
-    <option value="pie">Pie</option>
-    <option value="total">Total</option>
-  </select>
+  <mat-form-field appearance="fill">
+    <mat-label>Ordenar por</mat-label>
+    <mat-select formControlName="sortBy">
+      @for (option of sortOptions; track option.value) {
+      <mat-option [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
-  <select formControlName="sortOrder">
-    <option value="asc">Ascendente</option>
-    <option value="desc">Descendente</option>
-  </select>
+  <mat-form-field appearance="fill">
+    <mat-label>Orden</mat-label>
+    <mat-select formControlName="sortOrder">
+      <mat-option value="asc">Ascendente</mat-option>
+      <mat-option value="desc">Descendente</mat-option>
+    </mat-select>
+  </mat-form-field>
 </form>

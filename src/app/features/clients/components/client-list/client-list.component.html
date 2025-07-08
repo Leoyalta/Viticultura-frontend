@@ -1,19 +1,46 @@
-@if (isLoading) {
-<p>Cargando clientes...</p>
-} @else if (error) {
-<p>Error: {{ error }}</p>
-} @else {
-<div class="layout">
-  <section class="clients-grid">
-    @if (clients.length === 0) {
+<app-filters-drawer (filtersChange)="onFiltersChange($event)">
+  <app-clients-filters filters (filtersChange)="onFiltersChange($event)" />
+
+  <section class="clients-container">
+    <div class="top-bar">
+      <button class="btn add-btn" (click)="goToAddClient()">
+        Añadir nuevo producto
+      </button>
+
+      <app-sort-controls
+        [sortOptions]="[
+          { value: 'name', label: 'Nombre' },
+          { value: 'secondName', label: 'Apellido' }
+        ]"
+        (sortChange)="onSortChange($event)"
+      ></app-sort-controls>
+    </div>
+
+    @if (isLoading) {
+    <app-spinner></app-spinner>
+    } @else if (error) {
+    <p class="error-message">Error: {{ error }}</p>
+    } @else { @if (clients.length === 0) {
     <p>No hay clientes para mostrar.</p>
-    } @else { @for (client of clients; track client._id) {
-    <app-client-card [client]="client" />
+    } @else {
+    <div class="layout">
+      <section class="clients-grid">
+        @for (client of clients; track client._id) {
+        <app-client-card [client]="client" />
+        }
+      </section>
+
+      <div class="map-panel">
+        <app-clients-map [clients]="clients"></app-clients-map>
+      </div>
+    </div>
+
+    <app-paginator
+      [length]="totalProducts"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+    />
     } }
   </section>
-
-  <aside class="map-panel">
-    <app-clients-map [clients]="clients"></app-clients-map>
-  </aside>
-</div>
-}
+</app-filters-drawer>

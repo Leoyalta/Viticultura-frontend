@@ -1,0 +1,45 @@
+<app-filters-drawer (filtersChange)="onFiltersChange($event)">
+  <app-products-filters filters (filtersChange)="onFiltersChange($event)">
+  </app-products-filters>
+  <section class="products-container">
+    <button class="btn add-btn" (click)="goToAddProduct()">
+      Añadir nuevo producto
+    </button>
+
+    <h2>Lista de Productos</h2>
+    <app-sort-controls
+      [sortOptions]="[
+        { value: 'code', label: 'Código' },
+        { value: 'variety', label: 'Variedad' },
+        { value: 'pie', label: 'Pie' },
+        { value: 'total', label: 'Total' }
+      ]"
+      (sortChange)="onSortChange($event)"
+    ></app-sort-controls>
+
+    @if (isLoading) {
+    <app-spinner></app-spinner>
+    } @else if (errorMessage) {
+    <p class="error-message">Error: {{ errorMessage }}</p>
+    } @else { @if (products.length === 0) {
+    <p class="no-products-msg">No hay productos para mostrar.</p>
+    } @else {
+    <div class="products-box">
+      @for (product of products; track product._id) {
+      <app-product-card
+        [product]="product"
+        [screenWidth]="screenWidth"
+        (cardClick)="goToDetails($event)"
+      />
+      }
+    </div>
+
+    <app-paginator
+      [length]="totalProducts"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+    />
+    } }
+  </section>
+</app-filters-drawer>
