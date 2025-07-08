@@ -1,0 +1,35 @@
+<div
+  class="product-card"
+  (click)="onClick()"
+  [ngClass]="product.variety.toLowerCase().replace(' ', '-')"
+>
+  <div class="column code">
+    <p class="code-text">{{ product.code }}</p>
+  </div>
+
+  <div class="column variety-pie">
+    <p><strong>Variedad:</strong> {{ product.variety }}</p>
+    <p><strong>Pie:</strong> {{ product.pie }}</p>
+  </div>
+
+  @if (screenWidth > 599) {
+  <div class="column clones">
+    <p><strong>Clon del Pie:</strong> {{ product.clonPie }}</p>
+    <p><strong>Clon:</strong> {{ product.clon }}</p>
+  </div>
+  }
+
+  <div class="column total-status">
+    <p><strong>Total:</strong> {{ product.total }}</p>
+    <p>
+      <strong>Disponible:</strong>
+      <span
+        class="status"
+        [class.available]="product.isAvailable"
+        [class.unavailable]="!product.isAvailable"
+      >
+        {{ product.isAvailable ? "SI ✅" : "NO ❌" }}
+      </span>
+    </p>
+  </div>
+</div>
