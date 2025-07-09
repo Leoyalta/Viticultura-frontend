@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   AfterViewInit,
   Input,
   ViewChild,
@@ -22,6 +21,7 @@ export class ClientLocationsMapComponent implements AfterViewInit, OnDestroy {
   @Input({ required: true }) clientId!: string;
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
   mapInitialized = false;
+  router: any;
 
   constructor(
     private mapboxService: MapboxService,

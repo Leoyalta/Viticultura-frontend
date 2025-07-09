@@ -29,7 +29,6 @@ export class ClientsMapComponent implements OnInit, AfterViewInit {
     if (!this.clients.length) return;
 
     const firstLocation = this.clients[0].address?.location?.coordinates;
-    console.log(firstLocation);
 
     if (!firstLocation) return;
 

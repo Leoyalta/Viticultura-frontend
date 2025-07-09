@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="saveLocation()" class="location-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre de la parcela</mat-label>
+    <input matInput formControlName="locationName" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="accent" (click)="saveLocation()">
+    <mat-icon>save</mat-icon>
+    Guardar Parcela
+  </button>
+</form>
+
+<mat-form-field appearance="fill" class="map-style-selector">
+  <mat-label>Estilo del mapa</mat-label>
+  <mat-select (selectionChange)="onStyleChange($event.value)">
+    <mat-option value="mapbox://styles/mapbox/streets-v12">Streets</mat-option>
+    <mat-option value="mapbox://styles/mapbox/satellite-v9"
+      >Satellite</mat-option
+    >
+    <mat-option value="mapbox://styles/mapbox/satellite-streets-v12"
+      >Sat + Streets</mat-option
+    >
+    <mat-option value="mapbox://styles/mapbox/outdoors-v12"
+      >Outdoors</mat-option
+    >
+  </mat-select>
+</mat-form-field>
+<div class="map-container" #mapContainer></div>

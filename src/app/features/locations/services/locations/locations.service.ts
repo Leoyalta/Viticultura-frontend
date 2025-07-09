@@ -5,6 +5,7 @@ import {
   LocationApiResponse,
   LocationPayload,
   ClientLocation,
+  LocationListApiResponse,
 } from '../../models/locationsModel';
 
 const API_URL = 'https://viticultura-backend.onrender.com/locations';
@@ -17,7 +18,7 @@ export class LocationsService {
 
   getClientLocations(clientId: string): Observable<ClientLocation[]> {
     return this.http
-      .get<LocationApiResponse>(`${API_URL}?owner=${clientId}`)
+      .get<LocationListApiResponse>(`${API_URL}?owner=${clientId}`)
       .pipe(
         map((res) => {
           return res.data;
@@ -30,7 +31,9 @@ export class LocationsService {
 
   createLocation(payload: LocationPayload): Observable<ClientLocation> {
     return this.http.post<LocationApiResponse>(API_URL, payload).pipe(
-      map((res) => res.data[0]),
+      map((res) => {
+        return res.data;
+      }),
       catchError((err) => {
         console.error('Error creating location:', err);
         return throwError(

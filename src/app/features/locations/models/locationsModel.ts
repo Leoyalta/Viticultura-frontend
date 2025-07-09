@@ -32,5 +32,10 @@ export interface LocationPayload {
 export interface LocationApiResponse {
   status: number;
   message: string;
+  data: ClientLocation;
+}
+export interface LocationListApiResponse {
+  status: number;
+  message: string;
   data: ClientLocation[];
 }
