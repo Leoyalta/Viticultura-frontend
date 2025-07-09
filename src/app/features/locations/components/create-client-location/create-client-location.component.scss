@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.location-form {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+
+  mat-form-field {
+    flex: 1 1 300px;
+    min-width: 250px;
+  }
+
+  button {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+.map-container {
+  flex: 1;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin: 1rem;
+  overflow: hidden;
+}
+.map-style-selector {
+  min-width: 250px;
+  margin: 1rem;
+}
