@@ -42,6 +42,14 @@
       <mat-icon>delete</mat-icon>
       Eliminar Cliente
     </button>
+    <button
+      mat-raised-button
+      color="accent"
+      [routerLink]="['/clients', client._id, 'locations', 'new']"
+    >
+      <mat-icon>add_location</mat-icon>
+      Añadir Parcela
+    </button>
   </div>
 </mat-card>
 

@@ -35,6 +35,15 @@ export class MapboxService {
       if (onLoadCallback) onLoadCallback();
     });
   }
+  setMapStyle(styleUrl: string): void {
+    if (this.map?.isStyleLoaded()) {
+      this.map.setStyle(styleUrl);
+    } else {
+      this.map?.on('load', () => {
+        this.map?.setStyle(styleUrl);
+      });
+    }
+  }
   geocodeAddress(address: string): Observable<[number, number]> {
     const accessToken = environment.MAPBOX_TOKEN;
     const query = encodeURIComponent(address);
@@ -89,6 +98,8 @@ export class MapboxService {
   }
 
   enablePolygonDrawing(): void {
+    if (!this.map) return;
+
     this.draw = new MapboxDraw({
       displayControlsDefault: false,
       controls: {
@@ -98,6 +109,31 @@ export class MapboxService {
     });
 
     this.map.addControl(this.draw);
+  }
+
+  getDrawnPolygon(): number[][][] | null {
+    if (!this.draw) return null;
+
+    const data = this.draw.getAll();
+    if (data.features.length > 0) {
+      const geometry = data.features[0].geometry;
+      if (geometry.type === 'Polygon') {
+        return geometry.coordinates as number[][][];
+      }
+    }
+    return null;
+  }
+
+  disableDrawing(): void {
+    if (this.map && this.draw) {
+      try {
+        this.map.removeControl(this.draw);
+      } catch (err) {
+        console.warn('⚠️ Failed to remove drawing controls:', err);
+      }
+    }
+
+    this.draw = undefined as any;
   }
 
   drawPolygons(

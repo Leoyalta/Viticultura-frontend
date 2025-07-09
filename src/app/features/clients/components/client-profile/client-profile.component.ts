@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClientsService } from '../../services/clients/clients.service';
 import { Client } from '../../models/clientsModel';
@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
@@ -23,6 +24,7 @@ import { ClientLocationsMapComponent } from '../../../locations/components/clien
     ConfirmDialogComponent,
     SpinnerComponent,
     ClientLocationsMapComponent,
+    RouterModule,
   ],
   templateUrl: './client-profile.component.html',
   styleUrl: './client-profile.component.scss',
@@ -95,15 +97,3 @@ export class ClientProfileComponent implements OnInit {
     });
   }
 }
-// fetchLocations(ownerId: string) {
-//   this.clientService.getClientLocations(ownerId).subscribe({
-//     next: (locs) => {
-//       this.locations = locs;
-//       this.isLoading = false;
-//     },
-//     error: (err) => {
-//       this.error = err.message;
-//       this.isLoading = false;
-//     },
-//   });
-// }
