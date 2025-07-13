@@ -1,6 +1,19 @@
 .sort-form {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  align-items: center;
+  align-items: flex-end;
   margin-bottom: 1rem;
+
+  // mat-form-field {
+  // }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
 }

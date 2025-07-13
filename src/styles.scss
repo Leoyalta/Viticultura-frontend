@@ -88,3 +88,19 @@ a,
 button {
   color: var(--primary-text);
 }
+.mapbox-custom-popup {
+  color: var(--card-text);
+  background: var(--card-bg);
+  border-radius: 6px;
+  font-size: 14px;
+
+  .mapboxgl-popup-content {
+    background: var(--card-bg);
+    color: var(--card-text);
+    padding: 0.75rem 1rem;
+  }
+
+  .mapboxgl-popup-tip {
+    border-top-color: var(--card-bg);
+  }
+}
