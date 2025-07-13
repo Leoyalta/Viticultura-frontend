@@ -12,7 +12,6 @@ import { SortControlsComponent } from '../../../../shared/components/sort-contro
 import { Subscription } from 'rxjs';
 import { FiltersDrawerComponent } from '../../../../shared/components/filters-drawer/filters-drawer.component';
 import { ProductsFiltersComponent } from '../../filters/products-filters/products-filters.component';
-
 @Component({
   selector: 'app-products-list',
   standalone: true,

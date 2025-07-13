@@ -1,16 +1,18 @@
 .client-card {
-  margin: 1rem 0;
   width: 100%;
   max-width: 420px;
 }
 mat-card-content p:last-child {
-  margin-bottom: 1rem;
-  min-height: 3em;
+  min-height: 2em;
+  color: var(--card-text);
 }
-mat-card-content {
-  color: rgba(0, 0, 0, 0.87);
 
-  body.dark-theme & {
-    color: rgba(255, 255, 255, 0.87);
-  }
+mat-card {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+}
+
+mat-card-title,
+mat-card-subtitle {
+  color: var(--card-text);
 }

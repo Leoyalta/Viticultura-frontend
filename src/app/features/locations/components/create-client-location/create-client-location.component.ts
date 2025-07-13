@@ -109,7 +109,4 @@ export class CreateClientLocationComponent implements OnInit, OnDestroy {
   onStyleChange(styleUrl: string): void {
     this.mapbox.setMapStyle(styleUrl);
   }
-  // onStyleChange(styleUrl: string): void {
-  //   this.mapboxService.setMapStyle(styleUrl);
-  // }
 }
