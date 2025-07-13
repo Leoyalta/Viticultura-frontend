@@ -1,1 +1,7 @@
-<div #mapContainer class="map-container"></div>
+<div #mapContainer class="map-container">
+  @if (contextMenuVisible) {
+  <div class="context-menu" [style.top.px]="menuY" [style.left.px]="menuX">
+    <button (click)="onDeleteSelectedLocation()">🗑 Eliminar</button>
+  </div>
+  }
+</div>

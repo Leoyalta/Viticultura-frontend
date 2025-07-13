@@ -35,10 +35,16 @@ export class LocationsService {
         return res.data;
       }),
       catchError((err) => {
-        console.error('Error creating location:', err);
         return throwError(
           () => new Error(err?.error?.message || 'Error al crear ubicación')
         );
+      })
+    );
+  }
+  deleteLocation(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_URL}/${id}`).pipe(
+      catchError((err) => {
+        return throwError(() => new Error('Error al eliminar la ubicación'));
       })
     );
   }

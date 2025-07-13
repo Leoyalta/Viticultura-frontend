@@ -11,7 +11,13 @@ import MapboxDraw from '@mapbox/mapbox-gl-draw';
 export class MapboxService {
   map!: mapboxgl.Map;
   markers: mapboxgl.Marker[] = [];
+  polygonLayers: {
+    id: string;
+    sourceId: string;
+    locationId: string;
+  }[] = [];
   private draw!: MapboxDraw;
+  polygonLayerId = '';
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +27,9 @@ export class MapboxService {
     zoom: number = 10,
     onLoadCallback?: () => void
   ): void {
+    if (this.map) {
+      this.map.remove();
+    }
     this.map = new mapboxgl.Map({
       container,
       style: 'mapbox://styles/mapbox/streets-v12',
@@ -132,17 +141,17 @@ export class MapboxService {
         console.warn('⚠️ Failed to remove drawing controls:', err);
       }
     }
-
     this.draw = undefined as any;
   }
 
   drawPolygons(
     polygons: {
       coordinates: number[][][];
-      properties: { name: string; owner?: string; phone?: string }; // Add owner and phone here
+      properties: { id: string; name: string; owner?: string; phone?: string };
     }[]
   ): void {
     this.clearPolygonLayer();
+    this.polygonLayers = [];
 
     polygons.forEach((polygonData, index) => {
       const geojson: GeoJSON.Feature = {
@@ -152,6 +161,7 @@ export class MapboxService {
           coordinates: polygonData.coordinates,
         },
         properties: {
+          id: polygonData.properties.id,
           name: polygonData.properties.name || `Parcela ${index + 1}`,
           owner: polygonData.properties.owner,
           phone: polygonData.properties.phone,
@@ -162,6 +172,17 @@ export class MapboxService {
       const layerId = `polygon-layer-${index}`;
       const labelId = `polygon-label-${index}`;
 
+      if (this.map.getLayer(labelId)) {
+        this.map.removeLayer(labelId);
+      }
+
+      if (this.map.getLayer(layerId)) {
+        this.map.removeLayer(layerId);
+      }
+
+      if (this.map.getSource(sourceId)) {
+        this.map.removeSource(sourceId);
+      }
       this.map.addSource(sourceId, {
         type: 'geojson',
         data: geojson,
@@ -200,15 +221,24 @@ export class MapboxService {
         👤 ${props['owner'] || 'Sin nombre'}<br />
         📞 ${props['phone'] || '—'}
       `;
-
-        new mapboxgl.Popup().setLngLat(e.lngLat).setHTML(html).addTo(this.map);
+        new mapboxgl.Popup({ className: 'mapbox-custom-popup' })
+          .setLngLat(e.lngLat)
+          .setHTML(html)
+          .addTo(this.map);
       });
 
       this.map.on('mouseenter', layerId, () => {
         this.map.getCanvas().style.cursor = 'pointer';
       });
+
       this.map.on('mouseleave', layerId, () => {
         this.map.getCanvas().style.cursor = '';
+      });
+
+      this.polygonLayers.push({
+        id: layerId,
+        sourceId,
+        locationId: polygonData.properties.id,
       });
     });
   }
@@ -236,6 +266,73 @@ export class MapboxService {
 
     if (this.map.getSource('polygon')) {
       this.map.removeSource('polygon');
+    }
+  }
+
+  setPolygonRightClickHandler(
+    callback: (polygonId: string, screenPoint: mapboxgl.Point) => void
+  ): void {
+    this.map.on('contextmenu', (event) => {
+      event.preventDefault();
+
+      const features = this.map.queryRenderedFeatures(event.point);
+      const polygonLayerIds = this.polygonLayers.map((l) => l.id);
+
+      const polygonFeature = features.find(
+        (f) => f.layer && polygonLayerIds.includes(f.layer.id)
+      );
+
+      const polygonId = polygonFeature?.properties?.['id'];
+      if (polygonId) {
+        callback(polygonId, event.point);
+      }
+    });
+
+    this.map.on('click', () => {
+      callback('', new mapboxgl.Point(0, 0));
+    });
+    let touchStartTime = 0;
+
+    this.map.on('touchstart', () => {
+      touchStartTime = Date.now();
+    });
+
+    this.map.on('touchend', (e) => {
+      const duration = Date.now() - touchStartTime;
+
+      if (duration > 500) {
+        const point = e.point;
+        const features = this.map.queryRenderedFeatures(point);
+
+        const polygonLayerIds = this.polygonLayers.map((l) => l.id);
+        const polygonFeature = features.find(
+          (f) => f.layer && polygonLayerIds.includes(f.layer.id)
+        );
+
+        const polygonId = polygonFeature?.properties?.['id'];
+        if (polygonId) {
+          callback(polygonId, point);
+        }
+      }
+    });
+  }
+
+  setClickHandler(
+    callback: (polygonId: string, lngLat: mapboxgl.LngLat) => void
+  ): void {
+    for (const layer of this.polygonLayers) {
+      if (!this.map.getLayer(layer.id)) continue;
+
+      this.map.on('click', layer.id, (event) => {
+        const features = this.map.queryRenderedFeatures(event.point, {
+          layers: [layer.id],
+        });
+
+        const polygonId = features[0]?.properties?.['id'];
+        if (polygonId) {
+          callback(polygonId, event.lngLat);
+        }
+      });
     }
   }
 }
