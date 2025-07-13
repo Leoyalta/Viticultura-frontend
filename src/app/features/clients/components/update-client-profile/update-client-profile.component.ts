@@ -28,7 +28,6 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
     MatSnackBarModule,
     MapboxAddressComponent,
     MatDialogModule,
-    ConfirmDialogComponent,
   ],
   templateUrl: './update-client-profile.component.html',
   styleUrl: './update-client-profile.component.scss',

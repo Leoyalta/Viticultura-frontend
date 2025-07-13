@@ -21,7 +21,6 @@ import { ClientLocationsMapComponent } from '../../../locations/components/clien
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    ConfirmDialogComponent,
     SpinnerComponent,
     ClientLocationsMapComponent,
     RouterModule,
