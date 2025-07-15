@@ -1,0 +1,47 @@
+<form [formGroup]="filtersForm" class="filters-form">
+  <h3>Filtrar Pedidos</h3>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Plantación Solicitada</mat-label>
+    <mat-select formControlName="plantingRequested">
+      <mat-option [value]="null">Todos</mat-option>
+      <mat-option [value]="true">Sí</mat-option>
+      <mat-option [value]="false">No</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de Plantación</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="plantingDate"
+      placeholder="Seleccionar fecha"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('plantingDate')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="">Todos</mat-option>
+      @for (status of allowedStatuses; track status) {
+      <mat-option [value]="status">{{ status | titlecase }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button class="btn reset-btn" type="button" (click)="resetFilters()">
+    Reiniciar <mat-icon class="icon-close">autorenew</mat-icon>
+  </button>
+</form>

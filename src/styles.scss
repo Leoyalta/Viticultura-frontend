@@ -4,6 +4,9 @@
 @use "@angular/material" as mat;
 @import "./app//core/themes/themes.css";
 
+@import "mapbox-gl/dist/mapbox-gl.css";
+@import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+
 @include mat.core();
 
 html,
@@ -11,7 +14,18 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 100%;
   overflow-x: hidden;
+}
+
+app-root {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 app-root {

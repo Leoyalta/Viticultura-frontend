@@ -1,0 +1,102 @@
+<mat-card class="create-order-card">
+  <mat-card-title>Crear nuevo pedido</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="client" required>
+          <mat-option>-- Seleccionar cliente --</mat-option>
+          @for (client of clients; track client._id) {
+          <mat-option [value]="client._id"
+            >{{ client.name }} {{ client.secondName }}</mat-option
+          >
+          }
+        </mat-select>
+        @if (orderForm.get('client')?.hasError('required') &&
+        orderForm.get('client')?.touched) {
+        <mat-error> Por favor, selecciona un cliente </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Producto</mat-label>
+        <mat-select formControlName="product" required>
+          <mat-option>-- Seleccionar producto --</mat-option>
+          @for (product of products; track product._id) {
+          <mat-option [value]="product._id"
+            >{{ product.code }} - {{ product.variety }}</mat-option
+          >
+          }
+        </mat-select>
+        @if (orderForm.get('product')?.hasError('required') &&
+        orderForm.get('product')?.touched) {
+        <mat-error> Por favor, selecciona un producto </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="quantity"
+          required
+          min="1"
+        />
+        @if (orderForm.get('quantity')?.hasError('required') &&
+        orderForm.get('quantity')?.touched) {
+        <mat-error> Introduce una cantidad </mat-error>
+        } @else if (orderForm.get('quantity')?.hasError('min') &&
+        orderForm.get('quantity')?.touched) {
+        <mat-error> La cantidad debe ser al menos 1 </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-checkbox formControlName="plantingRequested"
+        >¿Se requiere plantación?</mat-checkbox
+      >
+
+      <div class="calendar-container">
+        <h4>Selecciona la fecha de **plantación** en el calendario:</h4>
+        @if (calendarVisible) {
+        <full-calendar [options]="calendarOptions"></full-calendar>
+        } @if (orderForm.get('plantingDate')?.value) {
+        <p>
+          Fecha de plantación seleccionada:
+          {{ orderForm.get("plantingDate")?.value | date : "yyyy-MM-dd" }}
+        </p>
+        } @if (orderForm.get('plantingRequested')?.value &&
+        orderForm.get('plantingDate')?.hasError('required') &&
+        orderForm.get('plantingDate')?.touched) {
+        <mat-error>
+          Por favor, selecciona la fecha de plantación en el calendario.
+        </mat-error>
+        }
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Estado</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option value="pending">Pendiente</mat-option>
+          <mat-option value="processing">Procesando</mat-option>
+          <mat-option value="scheduled">Programado</mat-option>
+          <mat-option value="completed">Completado</mat-option>
+          <mat-option value="cancelled">Cancelado</mat-option>
+        </mat-select>
+        @if (orderForm.get('status')?.hasError('required') &&
+        orderForm.get('status')?.touched) {
+        <mat-error> Por favor, selecciona un estado </mat-error>
+        }
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="orderForm.invalid"
+      >
+        Crear pedido
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

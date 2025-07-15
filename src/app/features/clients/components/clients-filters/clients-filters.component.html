@@ -1,4 +1,6 @@
 <form [formGroup]="filtersForm" class="filters-form">
+  <h3>Filtrar Clientes</h3>
+
   <mat-form-field appearance="fill">
     <mat-label>Nombre</mat-label>
     <input matInput formControlName="name" placeholder="Ej: Juan" />
@@ -38,7 +40,13 @@
     </button>
   </mat-form-field>
 
-  <button class="btn reset-btn" type="button" (click)="resetFilters()">
-    Reiniciar <mat-icon class="icon-close">autorenew</mat-icon>
+  <button
+    mat-flat-button
+    color="warn"
+    class="reset-btn"
+    type="button"
+    (click)="resetFilters()"
+  >
+    <mat-icon>autorenew</mat-icon> Reiniciar
   </button>
 </form>
