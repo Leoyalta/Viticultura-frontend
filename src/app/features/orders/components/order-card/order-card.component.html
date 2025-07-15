@@ -1,0 +1,39 @@
+<mat-card
+  class="order-card"
+  appearance="outlined"
+  [ngClass]="'status-' + order.status"
+>
+  <mat-card-header>
+    <mat-card-title>ID Pedido: {{ order._id }}</mat-card-title>
+    <mat-card-subtitle
+      >Creado: {{ order.createdAt | date : "short" }}</mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+      <strong>Cliente:</strong> {{ order.client?.name }}
+      {{ order.client?.secondName }}
+    </p>
+    <p>
+      <strong>Producto:</strong> {{ order.product?.variety }}
+      {{ order.product?.pie }}
+    </p>
+    <p><strong>Cantidad:</strong> {{ order.quantity }}</p>
+    <p>
+      <strong>Plantación:</strong>
+      {{ order.plantingRequested ? "Sí" : "No" }}
+    </p>
+    <p class="planting-date-row">
+      @if (order.plantingRequested && order.plantingDate) {
+      <strong>Fecha de Plantación:</strong> {{ order.plantingDate | date }}
+      } @else { &nbsp; }
+    </p>
+    <p><strong>Estado:</strong> {{ order.status | titlecase }}</p>
+  </mat-card-content>
+
+  <mat-card-actions class="btns-box">
+    <button mat-stroked-button color="primary">Editar</button>
+    <button mat-stroked-button color="warn">Eliminar</button>
+  </mat-card-actions>
+</mat-card>

@@ -13,6 +13,7 @@ export class TabNavigationComponent {
     { label: 'HOME', path: 'home' },
     { label: 'PRODUCTS', path: 'products' },
     { label: 'CLIENTS', path: 'clients' },
+    { label: 'PEDIDOS', path: 'orders' },
     { label: 'Login', path: 'login' },
     { label: 'Register', path: 'register' },
   ];

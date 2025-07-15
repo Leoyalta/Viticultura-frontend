@@ -5,17 +5,27 @@
     [opened]="!screenService.isSmallScreen()"
     position="start"
   >
-    <ng-content select="[filters]"></ng-content>
+    <ng-content
+      select="[filters]"
+      (filtersChange)="handleFiltersChange($event)"
+    ></ng-content>
   </mat-drawer>
 
   <div class="main-content">
     @if (screenService.isSmallScreen()) {
-    <div class="toggle-filters-container">
-      <button mat-button class="toggle-filters-btn" (click)="drawer.toggle()">
-        Filtros
+    <div class="top-bar-with-filter">
+      <button
+        mat-flat-button
+        color="primary"
+        class="toggle-filters-btn"
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>filter_list</mat-icon> Filtrar
       </button>
     </div>
     }
-    <ng-content></ng-content>
+    <div class="content-area">
+      <ng-content></ng-content>
+    </div>
   </div>
 </mat-drawer-container>

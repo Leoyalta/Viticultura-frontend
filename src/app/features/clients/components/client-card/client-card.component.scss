@@ -1,18 +1,23 @@
-.client-card {
-  width: 100%;
-  max-width: 420px;
-}
-mat-card-content p:last-child {
-  min-height: 2em;
+.order-card {
+  background: var(--card-bg);
   color: var(--card-text);
-}
+  transition: box-shadow 0.3s ease;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
 
-mat-card {
-  background-color: var(--card-bg);
-  color: var(--card-text);
-}
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
 
-mat-card-title,
-mat-card-subtitle {
-  color: var(--card-text);
+  mat-card-content {
+    flex-grow: 1;
+  }
+
+  .btns-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: auto;
+  }
 }
