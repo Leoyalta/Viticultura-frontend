@@ -15,6 +15,8 @@ import { AddNewClientComponent } from './features/clients/components/add-new-cli
 import { UpdateClientProfileComponent } from './features/clients/components/update-client-profile/update-client-profile.component';
 
 import { CreateClientLocationComponent } from './features/locations/components/create-client-location/create-client-location.component';
+import { OrderListComponent } from './features/orders/components/order-list/order-list.component';
+import { CreateOrderComponent } from './features/orders/components/create-order/create-order.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,6 +39,8 @@ export const routes: Routes = [
     path: 'clients/:id/locations/new',
     component: CreateClientLocationComponent,
   },
+  { path: 'orders', component: OrderListComponent },
+  { path: 'addNewOrder', component: CreateOrderComponent },
 
   { path: '**', component: NotFoundPageComponent },
 ];

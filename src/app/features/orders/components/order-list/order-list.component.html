@@ -1,0 +1,47 @@
+<app-filters-drawer (filtersChange)="onFiltersChange($event)">
+  <app-orders-filters filters (filtersChange)="onFiltersChange($event)">
+  </app-orders-filters>
+
+  <section class="orders-container">
+    <button class="btn add-btn" (click)="goToAddOrder()">
+      Añadir nuevo pedido
+    </button>
+
+    <h2>Lista de Pedidos</h2>
+
+    <app-sort-controls
+      [sortOptions]="[
+        { value: 'createdAt', label: 'Fecha de Creación' },
+        { value: 'client', label: 'Cliente' },
+        { value: 'product', label: 'Producto' },
+        { value: 'quantity', label: 'Cantidad' },
+        { value: 'status', label: 'Estado' }
+      ]"
+      (sortChange)="onSortChange($event)"
+    ></app-sort-controls>
+
+    @if (isLoading) {
+    <app-spinner></app-spinner>
+    } @else if (errorMessage) {
+    <p class="error-message">Error: {{ errorMessage }}</p>
+    } @else { @if (orders.length === 0) {
+    <p class="no-orders-msg">No hay pedidos para mostrar.</p>
+    } @else {
+    <div class="order-grid">
+      @for (order of orders; track order._id) {
+      <app-order-card
+        [order]="order"
+        (click)="goToDetails(order._id)"
+      ></app-order-card>
+      }
+    </div>
+
+    <app-paginator
+      [length]="totalOrders"
+      [pageIndex]="pageIndex"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+    />
+    } }
+  </section>
+</app-filters-drawer>

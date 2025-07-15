@@ -4,7 +4,7 @@
   <section class="clients-container">
     <div class="top-bar">
       <button class="btn add-btn" (click)="goToAddClient()">
-        Añadir nuevo producto
+        Añadir nuevo cliente
       </button>
 
       <app-sort-controls
@@ -21,26 +21,26 @@
     } @else if (error) {
     <p class="error-message">Error: {{ error }}</p>
     } @else { @if (clients.length === 0) {
-    <p>No hay clientes para mostrar.</p>
+    <p class="empty-message">No hay clientes para mostrar.</p>
     } @else {
-    <div class="layout">
+    <div class="content-wrapper">
       <section class="clients-grid">
         @for (client of clients; track client._id) {
         <app-client-card [client]="client" />
         }
       </section>
 
+      <app-paginator
+        [length]="totalProducts"
+        [pageIndex]="pageIndex"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)"
+      />
+
       <div class="map-panel">
         <app-clients-map [clients]="clients"></app-clients-map>
       </div>
     </div>
-
-    <app-paginator
-      [length]="totalProducts"
-      [pageIndex]="pageIndex"
-      [pageSize]="pageSize"
-      (pageChange)="onPageChange($event)"
-    />
     } }
   </section>
 </app-filters-drawer>

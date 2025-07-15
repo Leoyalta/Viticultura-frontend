@@ -1,87 +1,74 @@
-<section class="filter-container">
-  <form [formGroup]="filtersForm" class="filters-form">
-    <div class="field-content-box">
-      <label class="label-filter"> Código: </label>
-      <div class="input-row">
-        <input
-          class="input-filter"
-          formControlName="code"
-          placeholder="Ej: 01-01-01"
-        />
-        <button
-          class="clear-filter-btn"
-          type="button"
-          (click)="clearField('code')"
-        >
-          <mat-icon class="icon-close">close</mat-icon>
-        </button>
-      </div>
-    </div>
-    <div class="selects-filter-wrapper">
-      <div class="field-content-box">
-        <label class="label-filter"> Variedad: </label>
-        <div class="input-row">
-          <select class="filter-select" formControlName="variety">
-            <option value="">--</option>
-            <option value="macabeo">Macabeo</option>
-            <option value="xarello">Xarello</option>
-            <option value="garnacha">Garnacha</option>
-            <option value="parellada">Parellada</option>
-            <option value="chardonnay">Chardonnay</option>
-            <option value="verdejo">Verdejo</option>
-            <option value="tempranillo">Tempranillo</option>
-            <option value="sauvignon">Sauvignon</option>
-          </select>
-          <button
-            class="clear-filter-btn"
-            type="button"
-            (click)="clearField('variety')"
-          >
-            <mat-icon class="icon-close">close</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="field-content-box">
-        <label class="label-filter"> Pie: </label>
-        <div class="input-row">
-          <select class="filter-select" formControlName="pie">
-            <option value="">--</option>
-            <option value="R-110">R-110</option>
-            <option value="SO-4">SO-4</option>
-            <option value="41-B">41-B</option>
-            <option value="Ru-140">Ru-140</option>
-            <option value="333">333</option>
-          </select>
-          <button
-            class="clear-filter-btn"
-            type="button"
-            (click)="clearField('pie')"
-          >
-            <mat-icon class="icon-close">close</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="field-content-box">
-        <label class="label-filter"> Disponible: </label>
-        <div class="input-row">
-          <select class="filter-select" formControlName="isAvailable">
-            <option value="">--</option>
-            <option [value]="true">Sí</option>
-            <option [value]="false">No</option>
-          </select>
-          <button
-            class="clear-filter-btn"
-            type="button"
-            (click)="clearField('isAvailable')"
-          >
-            <mat-icon class="icon-close">close</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
+<form [formGroup]="filtersForm" class="filters-form">
+  <h3>Filtrar Productos</h3>
 
-    <button type="button" class="btn reset-btn" (click)="resetFilters()">
-      Reiniciar <mat-icon class="icon-close">autorenew</mat-icon>
+  <mat-form-field appearance="fill">
+    <mat-label>Código</mat-label>
+    <input matInput formControlName="code" placeholder="Ej: 01-01-01" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('code')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
     </button>
-  </form>
-</section>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Variedad</mat-label>
+    <mat-select formControlName="variety">
+      <mat-option value="">Todos</mat-option>
+      @for (option of varietyOptions; track option) {
+      <mat-option [value]="option">{{ option | titlecase }}</mat-option>
+      }
+    </mat-select>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('variety')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pie</mat-label>
+    <mat-select formControlName="pie">
+      <mat-option value="">Todos</mat-option>
+      @for (option of pieOptions; track option) {
+      <mat-option [value]="option">{{ option }}</mat-option>
+      }
+    </mat-select>
+    <button mat-icon-button matSuffix (click)="clearField('pie')" type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Disponible</mat-label>
+    <mat-select formControlName="isAvailable">
+      <mat-option [value]="null">Todos</mat-option>
+      <mat-option [value]="true">Sí</mat-option>
+      <mat-option [value]="false">No</mat-option>
+    </mat-select>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clearField('isAvailable')"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button
+    mat-flat-button
+    color="warn"
+    class="reset-btn"
+    type="button"
+    (click)="resetFilters()"
+  >
+    <mat-icon>autorenew</mat-icon> Reiniciar
+  </button>
+</form>
