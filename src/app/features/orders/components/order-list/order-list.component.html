@@ -29,10 +29,7 @@
     } @else {
     <div class="order-grid">
       @for (order of orders; track order._id) {
-      <app-order-card
-        [order]="order"
-        (click)="goToDetails(order._id)"
-      ></app-order-card>
+      <app-order-card [order]="order"></app-order-card>
       }
     </div>
 
