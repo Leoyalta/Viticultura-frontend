@@ -173,3 +173,34 @@ form {
     }
   }
 }
+
+.snackbar-success,
+.snackbar-error,
+.snackbar-warning {
+  z-index: 9999 !important;
+  position: fixed;
+}
+
+.snackbar-success {
+  background-color: #4caf50;
+  color: white;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+
+.snackbar-error {
+  background-color: #f44336;
+  color: white;
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
+
+.snackbar-warning {
+  background-color: #ffc107;
+  color: rgba(0, 0, 0, 0.87);
+  .mat-simple-snackbar-action {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}

@@ -18,7 +18,7 @@ export interface Order {
   product: Product | null;
   quantity: number;
   plantingRequested: boolean;
-  plantingDate?: string;
+  plantingDate?: string | null;
   createdAt: string;
   updatedAt: string;
   status: string;
@@ -32,7 +32,7 @@ export interface OrdersQueryParams {
   client?: string;
   product?: string;
   plantingRequested?: boolean;
-  plantingDate?: string;
+  plantingDate?: string | null;
   status?: string;
 }
 
@@ -50,9 +50,19 @@ export interface CreateOrderPayload {
   clientId: string;
   productId: string;
   quantity: number;
-  deliveryDate: string;
   plantingRequested: boolean;
-  plantingDate?: string;
+  plantingDate?: string | null;
   status: string;
   notes?: string;
+}
+
+export interface UpdateOrderResponse {
+  status: number;
+  message: string;
+  data: Order;
+}
+export interface SingleOrderResponse {
+  status: number;
+  message: string;
+  order: Order;
 }

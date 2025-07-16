@@ -1,4 +1,3 @@
-// src/app/orders/orders.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
@@ -6,6 +5,8 @@ import {
   Order,
   OrdersQueryParams,
   OrdersResponse,
+  SingleOrderResponse,
+  UpdateOrderResponse,
 } from '../models/ordersModel';
 
 @Injectable({
@@ -114,6 +115,9 @@ export class OrdersService {
       )
     );
   }
+  getOrderById(id: string): Observable<SingleOrderResponse> {
+    return this.http.get<SingleOrderResponse>(`${this.API_URL}/${id}`);
+  }
 
   createOrder(orderData: any): Observable<Order> {
     return this.http.post<any>(this.API_URL, orderData).pipe(
@@ -123,8 +127,6 @@ export class OrdersService {
             'No se pudo crear el pedido: estructura de respuesta inválida'
           );
         }
-        console.log(response.data as Order);
-
         return response.data as Order;
       }),
       catchError((error) => {
@@ -133,5 +135,17 @@ export class OrdersService {
         );
       })
     );
+  }
+  updateOrder(
+    orderId: string,
+    updatedOrderData: Partial<Order>
+  ): Observable<UpdateOrderResponse> {
+    return this.http.patch<UpdateOrderResponse>(
+      `${this.API_URL}/${orderId}`,
+      updatedOrderData
+    );
+  }
+  deleteOrder(orderId: string): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${orderId}`);
   }
 }

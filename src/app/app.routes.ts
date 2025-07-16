@@ -17,6 +17,7 @@ import { UpdateClientProfileComponent } from './features/clients/components/upda
 import { CreateClientLocationComponent } from './features/locations/components/create-client-location/create-client-location.component';
 import { OrderListComponent } from './features/orders/components/order-list/order-list.component';
 import { CreateOrderComponent } from './features/orders/components/create-order/create-order.component';
+import { OrderDetailComponent } from './features/orders/components/order-detail/order-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,6 +41,7 @@ export const routes: Routes = [
     component: CreateClientLocationComponent,
   },
   { path: 'orders', component: OrderListComponent },
+  { path: 'orders/:id', component: OrderDetailComponent },
   { path: 'addNewOrder', component: CreateOrderComponent },
 
   { path: '**', component: NotFoundPageComponent },

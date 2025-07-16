@@ -6,10 +6,52 @@
     font-size: 1.2rem;
     color: var(--primary-text);
   }
+}
 
-  .order-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+.order-grid {
+  display: grid;
+  // Дефолтний вигляд для мобільних пристроїв (один стовпець)
+  grid-template-columns: 1fr;
+  gap: 1.5rem; // Проміжок між картками
+
+  // Центрування сітки, якщо вона не заповнює всю ширину
+  justify-content: center;
+  align-items: start; // Вирівнювання елементів по верху
+
+  // Малі екрани (sm) - 600px і більше
+  @media (min-width: 600px) {
+    // Два стовпці, якщо дозволяє простір. minmax(350px, 1fr) + gap
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(365px, 1fr)
+    ); // 350px (card) + 15px (margin) = 365px
   }
+
+  // Середні екрани (md) - 960px і більше
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(370px, 1fr)
+    ); // Трохи більше місця, щоб картки не були занадто широкими
+  }
+
+  // Великі екрани (lg) - 1280px і більше
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(380px, 1fr)
+    ); // Ще більше місця
+  }
+
+  // Дуже великі екрани (xl) - 1920px і більше
+  @media (min-width: 1920px) {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+// Додаткові стилі для контейнера, якщо потрібно
+.orders-container {
+  padding: 20px; // Загальний відступ навколо сітки
+  max-width: 1400px; // Обмежте загальну ширину контейнера
+  margin: 0 auto; // Центруйте контейнер
 }
