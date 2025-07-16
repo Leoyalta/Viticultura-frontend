@@ -32,7 +32,7 @@ mat-card-title {
 
 mat-card-subtitle {
   font-size: 1em;
-  color: #6a6a6a;
+  color: var(--card-text);
   margin-top: 5px;
   text-align: center;
 }
@@ -49,7 +49,7 @@ mat-card-content p {
 }
 
 mat-card-content strong {
-  color: #333;
+  color: var(--card-text);
 }
 
 mat-divider {
