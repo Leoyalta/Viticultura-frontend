@@ -1,1 +1,23 @@
-<p>not-found-page works!</p>
+<div class="not-found-container">
+  <mat-card class="not-found-card">
+    <mat-card-header class="not-found-header">
+      <mat-icon class="not-found-icon">error_outline</mat-icon>
+      <mat-card-title>404 - ¡Página no encontrada!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="not-found-content">
+      <p>Lo sentimos, la página que estás buscando no existe o se ha movido.</p>
+      <p>
+        Puede que hayas escrito mal la dirección o que la página ya no esté
+        disponible.
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="not-found-actions">
+      <button mat-raised-button color="primary" routerLink="/home">
+        <mat-icon>home</mat-icon> Ir a la página de inicio
+      </button>
+      <button mat-button color="accent" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Volver atrás
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

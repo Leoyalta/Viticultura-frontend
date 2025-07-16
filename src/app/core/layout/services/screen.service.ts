@@ -19,7 +19,6 @@ type BreakpointSize =
 export class ScreenService {
   private readonly _breakpoint = signal<BreakpointSize>('Unknown');
 
-  // === Signals ===
   readonly currentBreakpoint = computed(() => this._breakpoint());
 
   readonly isMobile = computed(() =>
