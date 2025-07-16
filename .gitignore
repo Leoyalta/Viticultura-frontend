@@ -8,6 +8,7 @@
 
 # Environment files
 .env
+/src/environments/environment.development.ts
 
 # Node
 /node_modules
