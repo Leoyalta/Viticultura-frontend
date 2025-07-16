@@ -9,33 +9,33 @@
 
   @if (!isMobile()) {
   <nav mat-tab-nav-bar class="desktop-nav-tabs" [tabPanel]="mainRouterPanel">
-    @for (link of navLinks; track link.path) {
+    @if (currentUser()) { @for (link of navLinks; track link.path) {
     <a
       mat-tab-link
       [routerLink]="link.path"
-      routerLinkActive
-      #rla="routerLinkActive"
-      [active]="rla.isActive"
+      routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
       {{ link.label }}
     </a>
-    }
+    } }
   </nav>
   <span class="spacer"></span>
   <nav mat-tab-nav-bar class="desktop-auth-tabs" [tabPanel]="authRouterPanel">
-    @for (link of authLinks; track link.path) {
+    @if (currentUser()) {
+    <a mat-tab-link (click)="logout()">
+      <mat-icon>logout</mat-icon> Logout ({{ currentUser()?.email }})
+    </a>
+    } @else { @for (link of authLinksNotLoggedIn; track link.path) {
     <a
       mat-tab-link
       [routerLink]="link.path"
-      routerLinkActive
-      #rla="routerLinkActive"
-      [active]="rla.isActive"
+      routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
       {{ link.label }}
     </a>
-    }
+    } }
   </nav>
   }
 
@@ -63,19 +63,23 @@
     (click)="toggleSidenav()"
   >
     <mat-nav-list>
-      @for (link of navLinks; track link.path) {
+      @if (currentUser()) { @for (link of navLinks; track link.path) {
       <a mat-list-item [routerLink]="link.path" routerLinkActive="active">
         <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
         <span matListItemTitle>{{ link.label }}</span>
       </a>
       }
       <mat-divider></mat-divider>
-      @for (link of authLinks; track link.path) {
+      <a mat-list-item (click)="logout()">
+        <mat-icon matListItemIcon>logout</mat-icon>
+        <span matListItemTitle>Вийти ({{ currentUser()?.email }})</span>
+      </a>
+      } @else { @for (link of authLinksNotLoggedIn; track link.path) {
       <a mat-list-item [routerLink]="link.path" routerLinkActive="active">
         <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
         <span matListItemTitle>{{ link.label }}</span>
       </a>
-      }
+      } }
     </mat-nav-list>
   </mat-sidenav>
 
