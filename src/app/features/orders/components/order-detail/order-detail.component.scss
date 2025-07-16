@@ -72,24 +72,24 @@ mat-divider {
 
 .status-select-field {
   width: 100%;
-  max-width: 300px; /* Ширший селект для деталей */
+  max-width: 300px;
 }
 
 .border-status-pending {
   border-color: #ffc107;
-} /* Amber */
+}
 .border-status-processing {
   border-color: #2196f3;
-} /* Blue */
+}
 .border-status-scheduled {
   border-color: #9c27b0;
-} /* Purple */
+}
 .border-status-completed {
   border-color: #4caf50;
-} /* Green */
+}
 .border-status-cancelled {
   border-color: #f44336;
-} /* Red */
+}
 
 .status-pending {
   color: #ffc107;

@@ -1,11 +1,49 @@
-<app-nav-list />
-<app-tab-navigation></app-tab-navigation>
-<mat-toolbar color="primary">
-  <span>Angular Custom Themes</span>
+<mat-toolbar color="primary" class="main-toolbar">
+  @if (isMobile()) {
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  }
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+
+  @if (!isMobile()) {
+  <nav mat-tab-nav-bar class="desktop-nav-tabs" [tabPanel]="mainRouterPanel">
+    @for (link of navLinks; track link.path) {
+    <a
+      mat-tab-link
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ link.label }}
+    </a>
+    }
+  </nav>
+  <span class="spacer"></span>
+  <nav mat-tab-nav-bar class="desktop-auth-tabs" [tabPanel]="authRouterPanel">
+    @for (link of authLinks; track link.path) {
+    <a
+      mat-tab-link
+      [routerLink]="link.path"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      {{ link.label }}
+    </a>
+    }
+  </nav>
+  }
+
   <button mat-icon-button [matMenuTriggerFor]="themeMenu">
     <mat-icon>format_color_fill</mat-icon>
   </button>
 </mat-toolbar>
+
 <mat-menu #themeMenu="matMenu">
   @for (theme of themeService.getThemes(); track theme.id) {
   <button mat-menu-item (click)="themeService.setTheme(theme.id)">
@@ -14,6 +52,36 @@
   }
 </mat-menu>
 
-<main class="main">
-  <router-outlet />
-</main>
+<mat-tab-nav-panel #mainRouterPanel></mat-tab-nav-panel>
+<mat-tab-nav-panel #authRouterPanel></mat-tab-nav-panel>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    [mode]="drawerMode()"
+    [opened]="false"
+    (click)="toggleSidenav()"
+  >
+    <mat-nav-list>
+      @for (link of navLinks; track link.path) {
+      <a mat-list-item [routerLink]="link.path" routerLinkActive="active">
+        <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
+        <span matListItemTitle>{{ link.label }}</span>
+      </a>
+      }
+      <mat-divider></mat-divider>
+      @for (link of authLinks; track link.path) {
+      <a mat-list-item [routerLink]="link.path" routerLinkActive="active">
+        <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
+        <span matListItemTitle>{{ link.label }}</span>
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <main class="content-wrapper">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
