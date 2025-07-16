@@ -12,10 +12,7 @@
     <app-sort-controls
       [sortOptions]="[
         { value: 'createdAt', label: 'Fecha de Creación' },
-        { value: 'client', label: 'Cliente' },
-        { value: 'product', label: 'Producto' },
-        { value: 'quantity', label: 'Cantidad' },
-        { value: 'status', label: 'Estado' }
+        { value: 'updatedAt', label: 'Fecha de Actualización' }
       ]"
       (sortChange)="onSortChange($event)"
     ></app-sort-controls>

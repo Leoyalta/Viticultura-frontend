@@ -6,6 +6,15 @@ const dotenv = require("dotenv").config({ path: "src/.env" });
 
 const envFile = `export const environment = {
     MAPBOX_TOKEN: '${process.env.MAPBOX_TOKEN}',
+    firebase: {
+        apiKey: '${process.env.FIREBASE_API_KEY}',
+        authDomain: '${process.env.FIREBASE_AUTH_DOMAIN}',
+        projectId: '${process.env.FIREBASE_PROJECT_ID}',
+        storageBucket:'${process.env.FIREBASE_STORAGE_BUCKET}', // <--- УВАГА: У вас була помилка FFIREBASE_STORAGE_BUCKET
+        messagingSenderId:'${process.env.FIREBASE_MESSAGING_SENDER_ID}',
+        appId:'${process.env.FIREBASE_APP_ID}',
+        measurementId:'${process.env.FIREBASE_MEASUREMENT_ID}'
+    }
 };
 `;
 const targetPath = path.join(

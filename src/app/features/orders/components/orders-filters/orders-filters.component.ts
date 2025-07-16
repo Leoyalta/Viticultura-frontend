@@ -5,8 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 
 export const allowedOrderStatuses = [
@@ -27,8 +25,6 @@ export const allowedOrderStatuses = [
     MatInputModule,
     MatIconModule,
     MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatButtonModule,
   ],
   templateUrl: './orders-filters.component.html',
@@ -44,7 +40,6 @@ export class OrdersFiltersComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.filtersForm = this.fb.group({
       plantingRequested: [null],
-      plantingDate: [null],
       status: [''],
     });
   }
@@ -52,14 +47,6 @@ export class OrdersFiltersComponent implements OnInit {
   ngOnInit(): void {
     if (Object.keys(this.initialFilters).length > 0) {
       const patchValue: any = { ...this.initialFilters };
-      if (
-        patchValue.plantingDate &&
-        typeof patchValue.plantingDate === 'string'
-      ) {
-        patchValue.plantingDate = new Date(
-          patchValue.plantingDate + 'T00:00:00.000Z'
-        );
-      }
       this.filtersForm.patchValue(patchValue, { emitEvent: false });
     }
 
@@ -71,7 +58,7 @@ export class OrdersFiltersComponent implements OnInit {
   clearField(field: string): void {
     if (this.filtersForm.get(field)) {
       let newValue: any = '';
-      if (field === 'plantingRequested' || field === 'plantingDate') {
+      if (field === 'plantingRequested') {
         newValue = null;
       }
       this.filtersForm.get(field)?.setValue(newValue, { emitEvent: false });
@@ -83,7 +70,6 @@ export class OrdersFiltersComponent implements OnInit {
     this.filtersForm.reset(
       {
         plantingRequested: null,
-        plantingDate: null,
         status: '',
       },
       { emitEvent: false }
@@ -97,12 +83,7 @@ export class OrdersFiltersComponent implements OnInit {
     for (const key in value) {
       if (value.hasOwnProperty(key)) {
         const val = value[key];
-        if (key === 'plantingDate' && val instanceof Date) {
-          const year = val.getUTCFullYear();
-          const month = (val.getUTCMonth() + 1).toString().padStart(2, '0');
-          const day = val.getUTCDate().toString().padStart(2, '0');
-          cleanedFilters[key] = `${year}-${month}-${day}`;
-        } else if (val !== '' && val !== null && val !== undefined) {
+        if (val !== '' && val !== null && val !== undefined) {
           if (key === 'plantingRequested') {
             cleanedFilters[key] = String(val);
           } else {
