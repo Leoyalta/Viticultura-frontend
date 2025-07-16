@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ThemeService } from './core/themes/services/themes/theme.service';
 import { TabNavigationComponent } from './core/layout/tab-navigation/tab-navigation.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { TabNavigationComponent } from './core/layout/tab-navigation/tab-navigat
     MatButtonModule,
     MatToolbarModule,
     TabNavigationComponent,
+    MatSnackBarModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

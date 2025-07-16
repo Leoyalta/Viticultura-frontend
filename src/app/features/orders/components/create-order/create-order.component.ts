@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarOptions, DateSelectArg } from '@fullcalendar/core';
@@ -24,6 +25,7 @@ import { ClientsService } from '../../../clients/services/clients/clients.servic
 import { ProductsService } from '../../../products/services/products/products.service';
 import { Client } from '../../../clients/models/clientsModel';
 import { Product } from '../../../products/models/productsModel';
+
 @Component({
   selector: 'app-create-order',
   standalone: true,
@@ -36,6 +38,7 @@ import { Product } from '../../../products/models/productsModel';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatSnackBarModule,
     FullCalendarModule,
   ],
   templateUrl: './create-order.component.html',
@@ -79,7 +82,8 @@ export class CreateOrderComponent implements OnInit {
     private fb: FormBuilder,
     private ordersService: OrdersService,
     private clientsService: ClientsService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private snackBar: MatSnackBar
   ) {
     this.orderForm = this.fb.group({
       client: ['', Validators.required],
@@ -172,7 +176,10 @@ export class CreateOrderComponent implements OnInit {
 
       this.ordersService.createOrder(newOrderPayload).subscribe({
         next: (order) => {
-          console.log('Pedido creado exitosamente:', order);
+          this.snackBar.open('Pedido creado exitosamente ✅', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-success'],
+          });
           this.orderForm.reset({
             quantity: 1,
             plantingRequested: false,
@@ -180,15 +187,26 @@ export class CreateOrderComponent implements OnInit {
           });
         },
         error: (error) => {
-          console.error('Error al crear pedido:', error);
+          let errorMessage = 'Error al crear pedido. ❌';
           if (error.error && error.error.message) {
-            console.error('Mensaje de error del backend:', error.error.message);
+            errorMessage = `Error: ${error.error.message}`;
           }
+          this.snackBar.open(errorMessage, 'Cerrar', {
+            duration: 5000,
+            panelClass: ['snackbar-error'],
+          });
         },
       });
     } else {
-      console.log('El formulario es inválido', this.orderForm.value);
       this.orderForm.markAllAsTouched();
+      this.snackBar.open(
+        'Por favor, completa todos los campos requeridos. ⚠️',
+        'Cerrar',
+        {
+          duration: 4000,
+          panelClass: ['snackbar-warning'],
+        }
+      );
     }
   }
 }

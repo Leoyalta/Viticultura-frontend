@@ -1,0 +1,105 @@
+<div class="order-detail-container">
+  @if (isLoading) {
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner>
+    <p>Cargando detalles del pedido...</p>
+  </div>
+  } @else if (errorMessage) {
+  <div class="error-message">
+    <p>{{ errorMessage }}</p>
+    <button mat-raised-button color="primary" (click)="goBackToList()">
+      Volver a la lista
+    </button>
+  </div>
+  } @else if (order) {
+  <mat-card
+    class="order-detail-card"
+    [ngClass]="{
+      'border-status-pending': order.status === 'pending',
+      'border-status-processing': order.status === 'processing',
+      'border-status-scheduled': order.status === 'scheduled',
+      'border-status-completed': order.status === 'completed',
+      'border-status-cancelled': order.status === 'cancelled'
+    }"
+  >
+    <mat-card-header>
+      <mat-card-title
+        >Detalles del Pedido #{{ order._id.slice(-6) }}</mat-card-title
+      >
+      <mat-card-subtitle>
+        Creado: {{ order.createdAt | date : "medium" }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <strong>Cliente:</strong> {{ order.client?.name }}
+        {{ order.client?.secondName }} (Tel: {{ order.client?.phone }})
+      </p>
+      <p>
+        <strong>Producto:</strong> {{ order.product?.variety }} ({{
+          order.product?.pie
+        }}) - Código: {{ order.product?.code }}
+      </p>
+      <p><strong>Cantidad:</strong> {{ order.quantity }}</p>
+      <p>
+        <strong>Plantación Requerida:</strong>
+        <span
+          [ngClass]="{
+            'status-success': order.plantingRequested,
+            'status-danger': !order.plantingRequested
+          }"
+        >
+          {{ order.plantingRequested ? "Sí" : "No" }}
+        </span>
+      </p>
+      @if (order.plantingRequested && order.plantingDate) {
+      <p>
+        <strong>Fecha de Plantación:</strong>
+        {{ order.plantingDate | date : "mediumDate" }}
+      </p>
+      }
+      <p>
+        <strong>Última Actualización:</strong>
+        {{ order.updatedAt | date : "medium" }}
+      </p>
+
+      <mat-divider></mat-divider>
+
+      <!-- Селект для зміни статусу -->
+      <div class="status-select-section">
+        <mat-form-field appearance="outline" class="status-select-field">
+          <mat-label>Estado</mat-label>
+          <mat-select
+            [(ngModel)]="selectedStatus"
+            (selectionChange)="onStatusChange($event.value)"
+          >
+            @for (status of statusOptions; track status) {
+            <mat-option [value]="status">
+              <span
+                [ngClass]="{
+                  'status-pending': status === 'pending',
+                  'status-processing': status === 'processing',
+                  'status-scheduled': status === 'scheduled',
+                  'status-completed': status === 'completed',
+                  'status-cancelled': status === 'cancelled'
+                }"
+              >
+                {{ translateStatus(status) }}
+              </span>
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="card-actions">
+      <button mat-raised-button color="warn" (click)="onDeleteOrder()">
+        <mat-icon>delete</mat-icon> Eliminar Pedido
+      </button>
+      <button mat-stroked-button color="accent" (click)="goBackToList()">
+        <mat-icon>arrow_back</mat-icon> Volver a la lista
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  }
+</div>

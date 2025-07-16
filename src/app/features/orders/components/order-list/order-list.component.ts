@@ -21,7 +21,6 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    // DatePipe,
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
@@ -39,9 +38,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
   orders: Order[] = [];
   isLoading = false;
   errorMessage = '';
-  // Rename totalProducts to totalOrders for clarity and consistency,
-  // though just fixing the assignment below is sufficient if you prefer to keep the name.
-  totalOrders = 0; // This variable will now correctly hold the total count
+  totalOrders = 0;
   pageSize = 20;
   pageIndex = 0;
 
@@ -105,10 +102,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   goToAddOrder(): void {
     this.router.navigate(['/addNewOrder']);
-  }
-
-  goToDetails(id: string): void {
-    this.router.navigate(['/orders', id]);
   }
 
   ngOnDestroy(): void {

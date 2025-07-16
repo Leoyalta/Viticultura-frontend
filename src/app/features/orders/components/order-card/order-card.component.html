@@ -1,39 +1,71 @@
 <mat-card
   class="order-card"
-  appearance="outlined"
-  [ngClass]="'status-' + order.status"
+  [ngClass]="{
+    'border-status-pending': order.status === 'pending',
+    'border-status-processing': order.status === 'processing',
+    'border-status-scheduled': order.status === 'scheduled',
+    'border-status-completed': order.status === 'completed',
+    'border-status-cancelled': order.status === 'cancelled'
+  }"
 >
   <mat-card-header>
-    <mat-card-title>ID Pedido: {{ order._id }}</mat-card-title>
-    <mat-card-subtitle
-      >Creado: {{ order.createdAt | date : "short" }}</mat-card-subtitle
-    >
+    <mat-card-title>Pedido #{{ order._id.slice(-6) }}</mat-card-title>
+    <mat-card-subtitle>
+      Cliente:
+      <strong>{{ order.client?.name }} {{ order.client?.secondName }}</strong>
+    </mat-card-subtitle>
   </mat-card-header>
-
   <mat-card-content>
     <p>
-      <strong>Cliente:</strong> {{ order.client?.name }}
-      {{ order.client?.secondName }}
-    </p>
-    <p>
-      <strong>Producto:</strong> {{ order.product?.variety }}
-      {{ order.product?.pie }}
+      <strong>Producto:</strong> {{ order.product?.variety }} ({{
+        order.product?.pie
+      }})
     </p>
     <p><strong>Cantidad:</strong> {{ order.quantity }}</p>
     <p>
-      <strong>Plantación:</strong>
-      {{ order.plantingRequested ? "Sí" : "No" }}
+      <strong>Plantación Requerida:</strong>
+      <span
+        [ngClass]="{
+          'status-success': order.plantingRequested,
+          'status-danger': !order.plantingRequested
+        }"
+      >
+        {{ order.plantingRequested ? "Sí" : "No" }}
+      </span>
     </p>
-    <p class="planting-date-row">
-      @if (order.plantingRequested && order.plantingDate) {
-      <strong>Fecha de Plantación:</strong> {{ order.plantingDate | date }}
-      } @else { &nbsp; }
+    @if (order.plantingRequested && order.plantingDate) {
+    <p>
+      <strong>Fecha de Plantación:</strong>
+      {{ order.plantingDate | date : "mediumDate" }}
     </p>
-    <p><strong>Estado:</strong> {{ order.status | titlecase }}</p>
-  </mat-card-content>
+    }
+    <p>
+      <strong>Fecha de Creación:</strong>
+      {{ order.createdAt | date : "medium" }}
+    </p>
+    <p>
+      <strong>Última Actualización:</strong>
+      {{ order.updatedAt | date : "medium" }}
+    </p>
 
-  <mat-card-actions class="btns-box">
-    <button mat-stroked-button color="primary">Editar</button>
-    <button mat-stroked-button color="warn">Eliminar</button>
+    <p>
+      <strong>Estado:</strong>
+      <span
+        [ngClass]="{
+          'status-pending': order.status === 'pending',
+          'status-processing': order.status === 'processing',
+          'status-scheduled': order.status === 'scheduled',
+          'status-completed': order.status === 'completed',
+          'status-cancelled': order.status === 'cancelled'
+        }"
+      >
+        {{ translateStatus(order.status) }}
+      </span>
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="card-actions">
+    <button mat-stroked-button color="primary" (click)="viewOrderDetails()">
+      <mat-icon>info</mat-icon> Ver Detalles
+    </button>
   </mat-card-actions>
 </mat-card>
