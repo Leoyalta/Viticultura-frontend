@@ -1,59 +1,70 @@
-# ViticulturaFrontend
+# 🍇 Viticultura Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+## Descripción
 
-## Development server
+Este proyecto es una aplicación web desarrollada con Angular 19 diseñada específicamente para la gestión integral de clientes, parcelas vitivinícolas, y el control de productos y pedidos. Su objetivo principal es optimizar las operaciones en el sector vitivinícola, proporcionando herramientas intuitivas para la administración de datos geográficos, de clientes, de productos en almacén y de los procesos de pedido.
 
-To start a local development server, run:
+La aplicación permite:
 
-```bash
-ng serve
-```
+- Gestionar el almacén de productos, permitiendo el registro, consulta y actualización de los artículos disponibles en almacén, lo que facilita un control preciso de los recursos necesarios.
+- Consultar y registrar clientes de forma eficiente, manteniendo un registro detallado de sus interacciones y necesidades.
+- Dibujar y guardar parcelas geográficas en un mapa interactivo.
+- Visualizar múltiples ubicaciones (parcelas o puntos de interés) con detalles enriquecidos. Cada ubicación puede asociarse con información relevante, como el tipo de uva, el historial de cultivo, datos de rendimiento o el cliente responsable, facilitando una visión holística de las operaciones.
+- Registrar y administrar pedidos de clientes, desde la creación inicial hasta el seguimiento de su estado, optimizando el flujo de trabajo de ventas y distribución.
+- Conectarse con una API backend propia desplegada en Render para asegurar la persistencia y la recuperación segura de todos los datos de clientes, georreferenciados, de productos y de pedidos, garantizando la integridad y disponibilidad de la información.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La interfaz de usuario se caracteriza por un diseño moderno y responsive, adaptándose perfectamente a cualquier dispositivo (escritorio, tablet, móvil). Integra Mapbox GL JS para ofrecer una experiencia de mapa vectorial altamente interactiva y performante, permitiendo la manipulación y visualización de polígonos personalizados que representan las parcelas.
 
-## Code scaffolding
+## Tecnologías Utilizadas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Angular 19**: Framework moderno para construir aplicaciones SPA.
+- **Angular Material**: Una biblioteca de componentes UI/UX de alta calidad que implementa los principios de Material Design de Google.
+- **Firebase Authentication**: Para registro, login y logout de usuarios.
+- **Mapbox GL JS**: Visualización de mapas vectoriales e interacción con polígonos.
+- **@mapbox/mapbox-gl-draw**: Una extensión de Mapbox GL JS que habilita la funcionalidad de dibujar, editar y eliminar formas geométricas (polígonos, líneas, puntos) directamente sobre el mapa, esencial para la digitalización de parcelas vitivinícolas.
+- **FullCalendar**: Vista de calendario para eventos relacionados.
+- **SCSS**: Preprocesador de CSS que permite el uso de variables, anidamiento y otras características avanzadas.
+- **Reactive Forms**: Módulo de Angular para construir formularios reactivos con validaciones y control total del estado.
+- **Angular Router**: Navegación dinámica con rutas protegidas.
 
-```bash
-ng generate component component-name
-```
+## Instrucciones de Instalación y Ejecución
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Clona el repositorio:
 
-```bash
-ng generate --help
-```
+   - git clone https://github.com/Leoyalta/Viticultura-frontend
 
-## Building
+2. Entra en el directorio del proyecto:
 
-To build the project run:
+   - cd Viticultura-frontend
 
-```bash
-ng build
-```
+3. Instala las dependencias:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   - npm install
 
-## Running unit tests
+4. Configura las variables de entorno:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Crea un archivo .env en el directorio src/ de tu proyecto.
+- Añade tus claves API y tokens de servicio (Firebase, Mapbox) en este archivo, siguiendo el formato VARIABLE_NOMBRE=VALOR.
 
-```bash
-ng test
-```
+5. Inicia el servidor de desarrollo:
+   - npm run start
 
-## Running end-to-end tests
+## Características Principales
 
-For end-to-end (e2e) testing, run:
+- ✅ Gestión Completa de Datos: Permite el registro, consulta y actualización de productos, clientes y pedidos a través de formularios reactivos y validados, asegurando la consistencia y precisión de la información.
+- ✅ Integración con Mapbox y capas personalizadas.
+- ✅ Consumo del backend para persistir y leer datos georreferenciados.
+- ✅ Visualización Detallada de Ubicaciones: Proporciona una vista de detalles y mapa interactivo que muestra múltiples ubicaciones de forma clara, permitiendo a los usuarios explorar la información asociada a cada parcela o punto de interés.
+- ✅ Selector de estilos del mapa (satélite, calles, exteriores, etc.).
+- ✅ Registro y autenticación con Firebase (email/contraseña).
+- ✅ Diseño moderno y responsive (Material + SCSS).
+- ✅ Arquitectura modular con componentes standalone.
+- ✅ Navegación dinámica y estructura standalone.
+- ✅ Diseño responsive y moderno con SCSS.
+- ✅ Protección de rutas para contenidos privados.
 
-```bash
-ng e2e
-```
+## Demo
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Puedes ver el proyecto en acción aquí:
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- https://viticultura-frontend.vercel.app/
