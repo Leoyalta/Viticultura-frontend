@@ -56,8 +56,8 @@ export class AppComponent {
 
   navLinks = [
     { label: 'HOME', path: 'home', icon: 'home' },
-    { label: 'PRODUCTS', path: 'products', icon: 'category' },
-    { label: 'CLIENTS', path: 'clients', icon: 'people' },
+    { label: 'PRODUCTOS', path: 'products', icon: 'category' },
+    { label: 'CLIENTES', path: 'clients', icon: 'people' },
     { label: 'PEDIDOS', path: 'orders', icon: 'receipt' },
   ];
 

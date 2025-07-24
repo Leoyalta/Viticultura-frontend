@@ -1,89 +1,152 @@
-<section class="create-form">
-  <h2>Crear Nuevo Producto</h2>
+<section class="create-product-section">
+  <mat-card class="product-form-card">
+    <mat-card-title class="card-title">Crear Nuevo Producto</mat-card-title>
+    <mat-card-content>
+      <form
+        [formGroup]="productForm"
+        (ngSubmit)="onSubmit()"
+        class="product-form"
+      >
+        <!-- Código -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Código</mat-label>
+          <input
+            matInput
+            id="code"
+            formControlName="code"
+            placeholder="Ej: 01-02-03"
+          />
+          @if (productForm.get('code')?.invalid &&
+          productForm.get('code')?.touched) {
+          <mat-error>
+            El código es obligatorio y debe tener el formato 00-00-00.
+          </mat-error>
+          }
+        </mat-form-field>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="input-box">
-      <label for="code">Código</label>
-      <input id="code" formControlName="code" />
-      @if (productForm.get('code')?.invalid && productForm.get('code')?.touched)
-      {
-      <small class="error">Formato requerido: 01-02-03</small>
-      }
-    </div>
+        <!-- Variedad -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Variedad</mat-label>
+          <mat-select id="variety" formControlName="variety">
+            <mat-option value="">Selecciona una variedad</mat-option>
+            <mat-option value="Macabeo">Macabeo</mat-option>
+            <mat-option value="Xarello">Xarello</mat-option>
+            <mat-option value="Parellada">Parellada</mat-option>
+            <mat-option value="Tempranillo">Tempranillo</mat-option>
+            <mat-option value="Garnacha">Garnacha</mat-option>
+            <mat-option value="Chardonnay">Chardonnay</mat-option>
+            <mat-option value="Verdejo">Verdejo</mat-option>
+            <mat-option value="Sauvignon Blanc">Sauvignon Blanc</mat-option>
+          </mat-select>
+          @if (productForm.get('variety')?.invalid &&
+          productForm.get('variety')?.touched) {
+          <mat-error> Este campo es obligatorio. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="variety">Variedad</label>
-      <select id="variety" formControlName="variety">
-        <option value="">Selecciona una variedad</option>
-        <option value="Macabeo">Macabeo</option>
-        <option value="Xarello">Xarello</option>
-        <option value="Parellada">Parellada</option>
-        <option value="Tempranillo">Tempranillo</option>
-        <option value="Garnacha">Garnacha</option>
-        <option value="Chardonnay">Chardonnay</option>
-        <option value="Verdejo">Verdejo</option>
-        <option value="Sauvignon Blanc">Sauvignon Blanc</option>
-      </select>
-      @if (productForm.get('variety')?.invalid &&
-      productForm.get('variety')?.touched) {
-      <small class="error">Este campo es obligatorio</small>
-      }
-    </div>
+        <!-- Pie -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Pie</mat-label>
+          <mat-select id="pie" formControlName="pie">
+            <mat-option value="">Selecciona un pie</mat-option>
+            <mat-option value="R-110">R-110</mat-option>
+            <mat-option value="SO-4">SO-4</mat-option>
+            <mat-option value="Ru-140">Ru-140</mat-option>
+            <mat-option value="41-B">41-B</mat-option>
+            <mat-option value="333">333</mat-option>
+          </mat-select>
+          @if (productForm.get('pie')?.invalid &&
+          productForm.get('pie')?.touched) {
+          <mat-error> Este campo es obligatorio. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="pie">Pie</label>
-      <select id="pie" formControlName="pie">
-        <option value="">Selecciona un pie</option>
-        <option value="R-110">R-110</option>
-        <option value="SO-4">SO-4</option>
-        <option value="Ru-140">Ru-140</option>
-        <option value="41-B">41-B</option>
-        <option value="333">333</option>
-      </select>
-      @if (productForm.get('pie')?.invalid && productForm.get('pie')?.touched) {
-      <small class="error">Este campo es obligatorio</small>
-      }
-    </div>
+        <!-- Clon -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Clon</mat-label>
+          <input matInput id="clon" formControlName="clon" />
+          @if (productForm.get('clon')?.invalid &&
+          productForm.get('clon')?.touched) {
+          <mat-error> Este campo es obligatorio. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="clon">Clon</label>
-      <input id="clon" formControlName="clon" />
-      @if (productForm.get('clon')?.invalid && productForm.get('clon')?.touched)
-      {
-      <small class="error">Este campo es obligatorio</small>
-      }
-    </div>
+        <!-- Clon del Pie -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Clon del Pie</mat-label>
+          <input matInput id="clonPie" formControlName="clonPie" />
+          @if (productForm.get('clonPie')?.invalid &&
+          productForm.get('clonPie')?.touched) {
+          <mat-error> Este campo es obligatorio. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="clonPie">Clon del Pie</label>
-      <input id="clonPie" formControlName="clonPie" />
-      @if (productForm.get('clonPie')?.invalid &&
-      productForm.get('clonPie')?.touched) {
-      <small class="error">Este campo es obligatorio</small>
-      }
-    </div>
+        <!-- Total -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Total</mat-label>
+          <input
+            matInput
+            id="total"
+            type="number"
+            formControlName="total"
+            min="0"
+          />
+          @if (productForm.get('total')?.invalid &&
+          productForm.get('total')?.touched) {
+          <mat-error> Debe ser un número mayor que 0. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="total">Total</label>
-      <input id="total" type="number" formControlName="total" />
-      @if (productForm.get('total')?.invalid &&
-      productForm.get('total')?.touched) {
-      <small class="error">Debe ser un número mayor que 0</small>
-      }
-    </div>
+        <!-- Reservado -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Reservado</mat-label>
+          <input
+            matInput
+            id="reserved"
+            type="number"
+            formControlName="reserved"
+            min="0"
+          />
+          @if (productForm.get('reserved')?.invalid &&
+          productForm.get('reserved')?.touched) {
+          <mat-error> Debe ser un número mayor o igual a 0. </mat-error>
+          }
+        </mat-form-field>
 
-    <div class="input-box">
-      <label for="isAvailable">Disponible</label>
-      <select id="isAvailable" formControlName="isAvailable">
-        <option [value]="true">Sí</option>
-        <option [value]="false">No</option>
-      </select>
-    </div>
+        <!-- Stock -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Stock</mat-label>
+          <input
+            matInput
+            id="stock"
+            type="number"
+            formControlName="stock"
+            min="0"
+          />
+          @if (productForm.get('stock')?.invalid &&
+          productForm.get('stock')?.touched) {
+          <mat-error> Debe ser un número mayor o igual a 0. </mat-error>
+          }
+        </mat-form-field>
 
-    <button type="submit">Crear</button>
-  </form>
+        <!-- Disponible -->
+        <mat-form-field appearance="outline" class="full-width-field">
+          <mat-label>Disponible</mat-label>
+          <mat-select id="isAvailable" formControlName="isAvailable">
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  @if (errorMessage) {
-  <p class="error">{{ errorMessage }}</p>
-  }
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          class="submit-button"
+        >
+          Crear Producto
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </section>
