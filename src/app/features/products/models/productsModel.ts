@@ -6,6 +6,8 @@ export interface Product {
   clon: string;
   clonPie: string;
   total: number;
+  stock?: number;
+  reserved?: number;
   isAvailable: boolean;
   createdAt?: string;
   updatedAt?: string;

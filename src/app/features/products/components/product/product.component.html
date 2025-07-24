@@ -1,27 +1,62 @@
-@if (product) {
-<section class="product-details">
-  <h2>Producto: {{ product.code }}</h2>
-  <p><strong>Variedad:</strong> {{ product.variety }}</p>
-  <p><strong>Pie:</strong> {{ product.pie }}</p>
-  <p><strong>Clon:</strong> {{ product.clon }}</p>
-  <p><strong>Clon del Pie:</strong> {{ product.clonPie }}</p>
-  <p><strong>Total:</strong> {{ product.total }}</p>
-  <p><strong>Disponible:</strong> {{ product.isAvailable ? "Sí" : "No" }}</p>
-  <p><strong>Creado:</strong> {{ product.createdAt | date : "short" }}</p>
-  <p><strong>Actualizado:</strong> {{ product.updatedAt | date : "short" }}</p>
-
-  <div class="btns-box">
-    <button class="btn act-btn" (click)="goToUpdateProduct(product._id)">
-      Actualizar
-    </button>
-
-    <button class="btn delete-btn" (click)="openDeleteConfirm()">
-      Eliminar
+<section class="product-details-section">
+  @if (isLoading) {
+  <div class="loading-spinner">
+    <app-spinner></app-spinner>
+  </div>
+  } @else if (product) {
+  <mat-card class="product-details-card">
+    <mat-card-title class="card-title"
+      >Producto: {{ product.code }}</mat-card-title
+    >
+    <mat-card-content class="product-info-grid">
+      <p><strong>Variedad:</strong> {{ product.variety }}</p>
+      <p><strong>Pie:</strong> {{ product.pie }}</p>
+      <p><strong>Clon:</strong> {{ product.clon }}</p>
+      <p><strong>Clon del Pie:</strong> {{ product.clonPie }}</p>
+      <p><strong>Total:</strong> {{ product.total }}</p>
+      <p><strong>Reservado:</strong> {{ product.reserved ?? 0 }}</p>
+      <p><strong>Stock:</strong> {{ product.stock ?? product.total }}</p>
+      <p>
+        <strong>Disponible:</strong> {{ product.isAvailable ? "Sí" : "No" }}
+      </p>
+      <p><strong>Creado:</strong> {{ product.createdAt | date : "short" }}</p>
+      <p>
+        <strong>Actualizado:</strong> {{ product.updatedAt | date : "short" }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="card-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="goToUpdateProduct(product._id)"
+        class="action-button"
+      >
+        Actualizar
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="openDeleteConfirm()"
+        class="action-button"
+      >
+        Eliminar
+      </button>
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="goToProductsList()"
+        class="action-button back-button"
+      >
+        Volver a Productos
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  } @else {
+  <div class="error-message-container">
+    <p class="error-text">Producto no encontrado o error al cargar.</p>
+    <button mat-raised-button color="primary" (click)="goToProductsList()">
+      Volver a Productos
     </button>
   </div>
+  }
 </section>
-} @else { @if (errorMessage) {
-<p class="error">{{ errorMessage }}</p>
-} @else {
-<p>Producto no encontrado.</p>
-} }
